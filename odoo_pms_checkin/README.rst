@@ -3,7 +3,7 @@
 
 Odoo PMS Checkin
 =============
-blablala
+blablabla
 
 
 Use
