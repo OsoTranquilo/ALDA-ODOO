@@ -14,7 +14,7 @@
                 id="menu_codeine_task"
                 name="INE Codes"
                 parent="hotel.hotel_configuration_menu"
-                sequence="11"
+                sequence="25"
                 action="action_codeine_task"
             />
             <record id="view_form_codeine_task" model="ir.ui.view">
