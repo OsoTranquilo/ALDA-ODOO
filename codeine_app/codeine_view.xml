@@ -50,8 +50,8 @@
                 <field name="model">codeine.task</field>
                 <field name="arch" type="xml">
                     <search>
-                        <field name="place"/>
-                        <field name="code"/>
+                        <field name="code" string="By Code"/>
+                        <field name="place" string="By Place"/>
                     </search>
                 </field>
             </record>
