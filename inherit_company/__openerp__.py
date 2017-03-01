@@ -1,5 +1,5 @@
 {               
-'name': 'inherit Company Data for ALDA Hotels PMS',
+'name': 'Company Data for ALDA Hotels PMS',
 'summary': "Add company data",               
 'description':  'Add company data.',                 
 'author':   'Jose Luis Algara',

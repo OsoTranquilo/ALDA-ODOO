@@ -10,3 +10,4 @@ class Inherit_res_company(models.Model):
     permanentstaff = fields.Char('Permanent Staff', required=True)
     eventualstaff = fields.Char('Eventual Staff', required=True)
     policia = fields.Char('Police', required=True)
+    

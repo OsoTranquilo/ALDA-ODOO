@@ -9,7 +9,7 @@
                 view_mode="tree,form"
             /> 
         <!-- Menu item to open To-do Task list --> 
-         <!--       parent="mail.menu_mail_message"--> 
+         <!--      parent="mail.menu_mail_message"--> 
             <menuitem 
                 id="menu_Inherit_company_task"
                 name="Company configuration"
