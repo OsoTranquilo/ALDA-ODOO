@@ -13,8 +13,8 @@
             <menuitem 
                 id="menu_codeine_task"
                 name="INE Codes"
-                parent="mail.mail_channel_menu_root_chat"
-                sequence="21"
+                parent="hotel.hotel_configuration_menu"
+                sequence="11"
                 action="action_codeine_task"
             />
             <record id="view_form_codeine_task" model="ir.ui.view">
