@@ -1,0 +1,1 @@
+from . import inherit_company_model
