@@ -6,4 +6,5 @@
 'website': "http://www.aldahotels.com",   
 'version': '9.0.1.0.0',           
 'application':  True,
+'data': ['views/inherit_company_view.xml'],
 } 

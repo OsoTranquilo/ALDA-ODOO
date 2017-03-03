@@ -1,36 +1,27 @@
-<?xml version="1.0"?> 
-    <openerp>      
-        <data> 
-        <!-- Action to open To-do Task list -->
-            <act_window
-                id="action_Inherit_company_task"
-                name="INE Codes"
-                res_model="codeine.task"
-                view_mode="tree,form"
-            /> 
-        <!-- Menu item to open To-do Task list --> 
-         <!--      parent="mail.menu_mail_message"--> 
-            <menuitem 
-                id="menu_Inherit_company_task"
-                name="Company configuration"
-                parent="hotel.hotel_configuration_menu"
-                sequence="26"
-                action="action_Inherit_company_task"
-            />
-            <record id="view_Inherit_company_task" model="ir.ui.view">
-                <field name="name">Company Task Form</field>
-                <field name="model">res.company</field>
-                <field name="arch" type="xml">
-                    <form>
-                        <sheet>
-                            <group name="group_top">
-                                <group name="group_left">
-                                    <field name="police"/>
-                                </group>
-                            </group>
-                        </sheet>
-                    </form>
-                </field>
-            </record>
-        </data>
-    </openerp>
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--  Inherit Company view to add 'Hotel data' -->
+        <record id="alda_view_company_form" model="ir.ui.view">
+            <field name="name">alda.config.view_company_form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='account_grp']" position="before">
+                    <group>
+                        <group name="aldahotels_grp" string="Hotel data">
+                            <field name="tourism" />
+                            <field name="category" />
+                            <field name="rooms" />
+                            <field name="seats" />
+                            <field name="permanentstaff" />
+                            <field name="eventualstaff" />
+                            <field name="police" />
+                        </group>
+                    </group>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
