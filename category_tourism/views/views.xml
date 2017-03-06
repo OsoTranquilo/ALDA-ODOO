@@ -1,0 +1,57 @@
+<openerp>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="category_tourism.list">
+      <field name="name">category_tourism list</field>
+      <field name="model">category_tourism.category_tourism</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="display_name"/>
+        </tree>
+      </field>
+    </record>
+    <menuitem 
+        id="menu_category_tourism"
+        name="Category Tourism Codes"
+        parent="hotel.hotel_configuration_menu"
+        sequence="30"
+        action="category_tourism.action_window"
+    />
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="category_tourism.action_window">
+      <field name="name">category_tourism window</field>
+      <field name="res_model">category_tourism.category_tourism</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+    <record model="ir.actions.server" id="category_tourism.action_server">
+      <field name="name">category_tourism server</field>
+      <field name="model_id" ref="model_category_tourism_category_tourism"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+    <!--
+        <menuitem name="category_tourism" id="category_tourism.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="category_tourism.menu_1" parent="category_tourism.menu_root"/>
+    <menuitem name="Menu 2" id="category_tourism.menu_2" parent="category_tourism.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="category_tourism.menu_1_list" parent="category_tourism.menu_1"
+              action="category_tourism.action_window"/>
+    <menuitem name="Server to list" id="category_tourism" parent="category_tourism.menu_2"
+              action="category_tourism.action_server"/>
+    -->
+  </data>
+</openerp>
