@@ -9,5 +9,6 @@ class Inherit_res_company(models.Model):
     seats = fields.Char('Beds available')
     permanentstaff = fields.Char('Permanent Staff')
     eventualstaff = fields.Char('Eventual Staff')
-    police = fields.Char('Police number')
+    police = fields.Char('Police number',
+        size=10)
     
