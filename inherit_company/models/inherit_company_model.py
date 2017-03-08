@@ -10,4 +10,4 @@ class Inherit_res_company(models.Model):
     permanentstaff = fields.Integer('Permanent Staff',default=0, help='Used for INE statistics.')
     eventualstaff = fields.Integer('Eventual Staff',default=0, help='Used for INE statistics.')
     police = fields.Char('Police number',size=10, help='Used to generate the name of the file that will be given to the police.')
-    
+    category_id = fields.Many2one('category_tourism.category_tourism')

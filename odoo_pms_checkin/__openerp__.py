@@ -23,18 +23,18 @@
 
 {
     'name': 'Odoo PMS Checkin',
-    'version': '0.1',
-    'author': "",
-    'website': '',
-    'category': '',
+    'version': '9.0.0.1',
+    'author': "Jose Luis Algara",
+    'website': "http://www.aldahotels.com",
+    'category': 'AldaPMS',
     'summary': "",
     'description': "",
     'depends': [
         'stock',
     ],
     'data': [
-        '',
-	'',
+        'views/code_ine_view.xml',
+        'data/code_ine.csv',
     ],
     'test': [
     ],

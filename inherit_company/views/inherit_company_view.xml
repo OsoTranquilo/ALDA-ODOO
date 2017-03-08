@@ -12,6 +12,7 @@
                         <group name="aldahotels_grp" string="Hotel data">
                             <field name="tourism" />
                             <field name="category" />
+                            <field name="category_id"/>
                             <field name="rooms" />
                             <field name="seats" />
                             <field name="permanentstaff" />
