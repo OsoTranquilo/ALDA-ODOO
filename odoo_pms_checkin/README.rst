@@ -16,5 +16,5 @@ Credits
 Creator
 ------------
 
-* Jose Luis Alda
+* Jose Luis Algara
 * Darío Lodeiros

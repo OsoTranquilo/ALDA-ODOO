@@ -20,3 +20,4 @@
 ##############################################################################
 
 from . import code_ine_model
+from . import category_model
