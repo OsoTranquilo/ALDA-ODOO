@@ -35,6 +35,7 @@
     'data': [
         'views/code_ine_view.xml',
         'views/category_view.xml',
+        'views/inherit_res_company_view.xml',
         'data/code_ine.csv',
         'data/category.csv',
     ],
