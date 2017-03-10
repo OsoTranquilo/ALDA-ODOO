@@ -22,3 +22,4 @@
 from . import code_ine_model
 from . import category_model
 from . import inherit_res_company_model
+from . import cardex_model
