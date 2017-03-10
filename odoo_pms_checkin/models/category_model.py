@@ -7,10 +7,10 @@ class category_tourism(models.Model):
     #_rec_name = 'category'
 
 
-    @api.depends('name','tipo')
-    def category_comp(self):
-        for record in self:
-            record.category = record.tipo + " (" + record.name + ")"
+    #@api.depends('name','tipo')
+    #def category_comp(self):
+    #    for record in self:
+    #        record.category = record.tipo + " (" + record.name + ")"
 
     name = fields.Char('Category', required=True)
     tipo = fields.Char('Category type', required=True)

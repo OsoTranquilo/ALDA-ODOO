@@ -40,7 +40,7 @@
                 <field name="model">category</field>
                 <field name="arch" type="xml">
                     <tree>
-                        <field name="category"/>
+                        <field name="display_name"/>
                     </tree>
                 </field>
             </record>
