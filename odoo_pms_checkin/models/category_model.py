@@ -14,7 +14,7 @@ class category_tourism(models.Model):
 
     name = fields.Char('Category', required=True)
     tipo = fields.Char('Category type', required=True)
-    category = fields.Char(compute='category_comp')
+    #category = fields.Char(compute='category_comp')
     
     @api.multi
     def name_get(self):

@@ -24,7 +24,7 @@
                         <sheet>
                             <group name="group_top">
                                 <group name="group_left">
-                                    <field name="place"/>
+                                    <field name="name"/>
                                 </group>
                                 <group name="group_left">
                                     <field name="display_name"/>
@@ -42,7 +42,7 @@
                 <field name="model">code_ine</field>
                 <field name="arch" type="xml">
                     <tree>
-                        <field name="inecode"/>
+                        <field name="display_name"/>
                         <field name="code"/>
                     </tree>
                 </field>
@@ -52,8 +52,8 @@
                 <field name="model">code_ine</field>
                 <field name="arch" type="xml">
                     <search>
+                        <field name="name" string="By Place"/>
                         <field name="code" string="By Code"/>
-                        <field name="place" string="By Place"/>
                     </search>
                 </field>
             </record>
