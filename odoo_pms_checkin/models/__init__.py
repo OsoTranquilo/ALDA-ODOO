@@ -19,7 +19,8 @@
 #
 ##############################################################################
 
-from . import code_ine_model
 from . import category_model
 from . import inherit_res_company_model
+from . import inherit_hotel_reservation
 from . import cardex_model
+from . import code_ine_model

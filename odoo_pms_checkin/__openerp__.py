@@ -31,11 +31,15 @@
     'description': "",
     'depends': [
         'stock',
+        'hotel_reservation',
     ],
     'data': [
+        'views/cardex_partner_form.xml',
         'views/code_ine_view.xml',
         'views/category_view.xml',
         'views/inherit_res_company_view.xml',
+        'views/cardex_view.xml',
+        'views/inherit_hotel_reservation_view.xml',
         'data/code_ine.csv',
         'data/category.csv',
     ],
