@@ -24,13 +24,13 @@
                 </div>
                 <div colspan="2">
                     <label for="email" string="E-Mail"/>
-                    <field name="email" widget="email"  placeholder="Ej.: name@domain.com" />
-                </div>
-                <div colspan="2">
+                    <field name="email" widget="email"  placeholder="Ej.: name@domain.com" style="width: 25%%"/>
                     <label for="birthdate_date" string="Birth date"/>
-                    <field name="birthdate_date"/>
+                    <field name="birthdate_date" style="width: 25%%"/>
+                    <label for="gender" string="Gender"/>
+                    <field name="gender" style="width: 25%%"/>
                     <label for="comment" string="Comment"/>
-                    <field name="comment"/>
+                    <field name="comment" style="width: 25%%"/>
     <!--             <field name="contact_address"/>
                 <field name="display_name"/> -->
                 </div>
