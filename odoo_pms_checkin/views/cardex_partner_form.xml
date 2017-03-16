@@ -27,7 +27,8 @@
                     <field name="email" widget="email"  placeholder="Ej.: name@domain.com" />
                 </div>
                 <div colspan="2">
-                    <field name="birthdate"/>
+                    <label for="birthdate_date" string="Birth date"/>
+                    <field name="birthdate_date"/>
                     <label for="comment" string="Comment"/>
                     <field name="comment"/>
     <!--             <field name="contact_address"/>
