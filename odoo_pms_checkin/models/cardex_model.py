@@ -9,7 +9,7 @@ class Cardex(models.Model):
     @api.constrains('exit_date')
     def validation_dates(self):
         if self.exit_date < self.enter_date:
-             raise models.ValidationError('Checkout is not possible before check-in')
+             raise models.ValidationError('Departure date (%s) is prior to arrival on %s' % (self.exit_date, self.enter_date))
     
     def default_reservation_id(self):        
         if 'reservation_id' in self.env.context:
