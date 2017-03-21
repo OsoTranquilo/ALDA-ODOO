@@ -4,6 +4,12 @@ from openerp import models, fields, api
 
 class Cardex(models.Model):
     _name = 'cardex'
+
+
+    @api.constrains('exit_date')
+    def validation_dates(self):
+        if self.exit_date < self.enter_date:
+             raise models.ValidationError('Checkout is not possible before check-in')
     
     def default_reservation_id(self):        
         if 'reservation_id' in self.env.context:
@@ -31,6 +37,6 @@ class Cardex(models.Model):
 
     partner_id = fields.Many2one('res.partner', default=default_partner_id)
     reservation_id = fields.Many2one('hotel.reservation', default=default_reservation_id, readonly=True)
-    ine_room_id = fields.Many2one('code_ine', help='Room type in INE statistics.')
-    enter_date = fields.Date( default=default_enter_date)
-    exit_date = fields.Date( default=default_exit_date)
+    ine_room_id = fields.Many2one('code_ine', help='Room type in INE statistics.', required=True)
+    enter_date = fields.Date( default=default_enter_date, required=True)
+    exit_date = fields.Date( default=default_exit_date, required=True)
