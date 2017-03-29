@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+<record id="inherit_view_partner_id_numbers_form" model="ir.ui.view">
+    <field name="name">inherit_res.partner.id_number.form</field>
+    <field name="model">res.partner.id_number</field>
+    <field name="priority" eval="1"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+        <form string="Partner ID Numbers">
+            <group>
+                <field name="category_id" widget="selection"/>
+                <field name="name" />
+                <field name="date_issued" />
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="inherit_view_partner_id_numbers_tree" model="ir.ui.view">
+    <field name="name">inherit_res.partner.id_number.tree</field>
+    <field name="model">res.partner.id_number</field>
+    <field name="priority" eval="1"/>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+        <tree string="Partner ID Numbers">
+            <field name="category_id" widget="selection"/>
+            <field name="name" />
+            <field name="date_issued" />
+        </tree>
+    </field>
+</record>
+
+<record id="inherit_action_partner_id_numbers_form" model="ir.actions.act_window">
+    <field name="name">inherit Partner ID Numbers</field>
+    <field name="res_model">res.partner.id_number</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+</data>
+</openerp>
