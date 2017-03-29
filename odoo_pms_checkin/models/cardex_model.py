@@ -1,22 +1,17 @@
 #-*- coding: utf-8 -*- 
 
 from openerp import models, fields, api
+from openerp.exceptions import except_orm, ValidationError
 
 class Cardex(models.Model):
     _name = 'cardex'
 
-
+    # Validation for Departure date is after arrival date.
     @api.constrains('exit_date')
     def validation_dates(self):
         if self.exit_date < self.enter_date:
              raise models.ValidationError('Departure date (%s) is prior to arrival on %s' % (self.exit_date, self.enter_date))
 
-    def validation_under_age(self):
-        diferencia = self.birthdate_date - datetime.datetime.now().time()
-        if self.birthdate_date <> Null:
-            raise models.ValidationError('He is under 16 years old, he is only %s years old.' % (diferencia))
-
-    
     def default_reservation_id(self):        
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])

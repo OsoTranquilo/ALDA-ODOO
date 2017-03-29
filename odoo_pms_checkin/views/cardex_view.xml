@@ -48,6 +48,7 @@
                         <field name="enter_date"/>
                         <field name="exit_date"/>
 <!--                          <field name="partner_id" context="{'form_view_ref':'mymodule.cardex_partner_form'}"/> -->
+                        <!-- Usando nuestro formulario-->
                          <field name="partner_id" context="{'form_view_ref':'odoo_pms_checkin.partners_form_cardex'}"/>
                         <field name="ine_room_id"/>
                     </tree>

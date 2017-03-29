@@ -42,6 +42,7 @@
         'views/inherit_hotel_reservation_view.xml',
         'data/code_ine.csv',
         'data/category.csv',
+        'data/res.partner.id_category.csv',
     ],
     'test': [
     ],
