@@ -2,6 +2,7 @@
 
 from openerp import models, fields, api
 from openerp.exceptions import except_orm, ValidationError
+import datetime
 
 class Cardex(models.Model):
     _name = 'cardex'
@@ -35,6 +36,21 @@ class Cardex(models.Model):
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.partner_id
         return False
+
+    #@api.onchange('exit_date')
+    #def _onchange_exit(self):
+    #    self.message = "Entra en %s" % (self.enter_date or "")
+
+
+    @api.onchange('enter_date', 'exit_date') # if these fields are changed, call method
+    def check_change_dates(self):
+        if self.exit_date < self.enter_date:
+            date_1 = datetime.datetime.strptime(self.enter_date, "%Y-%m-%d")
+            date_2 = date_1 + datetime.timedelta(days=1)
+            date_3 = self.exit_date
+            self.exit_date = date_1 + datetime.timedelta(days=1)
+            raise ValidationError('Departure date in %s, is prior to arrival on %s. Check it now.' % (date_3, self.enter_date))
+
 
     partner_id = fields.Many2one('res.partner', default=default_partner_id)
     reservation_id = fields.Many2one('hotel.reservation', default=default_reservation_id, readonly=True)
