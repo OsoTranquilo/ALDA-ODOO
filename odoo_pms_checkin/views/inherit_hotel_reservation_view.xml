@@ -33,9 +33,6 @@
                <field name="inherit_id" ref="hotel_reservation.view_hotel_reservation_form" />
                 <field name="arch" type="xml">
                     <xpath expr="//button[@name='done']" position="after">
-<!--                         <button name="%(action_hotel_checkin)d" type="action" string="Check in" states="confirm" class="oe_highlight"/>
-                        <button type="action" name="%(base.action_partner_category_form)d"
-string="Open partner Pruebas"  class="oe_highlight"/> -->
                         <button name="%(launch_checkin_wizard)d" string="Checkin"  type="action" context="{'reservation_id': id}" class="oe_highlight" />
                     </xpath>
                     <xpath expr="//notebook" position="inside">
@@ -45,31 +42,6 @@ string="Open partner Pruebas"  class="oe_highlight"/> -->
                     </xpath>
                 </field>
             </record>
-
-
- <!--        <record model="ir.ui.view" id="checkin_wizard_form_view">
-            <field name="name">wizard.form</field>
-            <field name="model">checkin.wizard</field>
-            <field name="arch" type="xml">
-                <form string="Add Checkin">
-                    <group>
-                        <field name="reservation_id"/>
-                        <field name="cardex_ids"/>
-                        <field name="enter_date"/>
-                        <field name="exit_date"/>
-                        <field name="partner_id"/>
-                        <field name="poldocument_cardex"/>
-                    </group>
-                </form>
-            </field>
-        </record>
-
-        <act_window id="launch_checkin_wizard"
-                    name="Add Checkin"
-                    res_model="checkin.wizard"
-                    view_mode="form"
-                    target="new"
-                    key2="client_action_multi"/>  -->
 
         </data>
     </openerp>
