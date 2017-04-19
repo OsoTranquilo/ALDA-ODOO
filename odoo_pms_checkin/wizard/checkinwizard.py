@@ -46,4 +46,22 @@ class Wizard(models.TransientModel):
     #ine_room_id = fields.Many2one('code_ine', help='Room type in INE statistics.', required=True)
     enter_date = fields.Date( default=default_enter_date, required=True)
     exit_date = fields.Date( default=default_exit_date, required=True)
-    poldocument_cardex = fields.Char('Document number', related='partner_id.poldocument')
+    poldocument_cardex = fields.Char('Document number', required=True, related='partner_id.poldocument')
+    polexpedition_cardex = fields.Date('Document expedition date', required=True, related='partner_id.polexpedition')
+    documenttype_cardex = fields.Selection([
+        ('D', 'DNI'),
+        ('P', 'Pasaporte'),
+        ('C', 'Permiso de Conducir'),
+        ('I', 'Carta o Doc. de Identidad'),
+        ('N', 'Permiso Residencia Español'),
+        ('X', 'Permiso Residencia Europeo')],
+        help='blabla',
+        required=True,
+        string='Document type',
+        related='partner_id.documenttype')
+    birthdate_date_cardex = fields.Date("Birthdate", required=True, related='partner_id.birthdate_date')
+    gender_cardex = fields.Selection([('male', 'Male'),
+                               ('female', 'Female')],
+                                required=True, related='partner_id.gender')
+    firstname_cardex = fields.Char('Firstname', required=True, related='partner_id.firstname')
+    lastname_cardex = fields.Char('Lastname', required=True, related='partner_id.lastname')

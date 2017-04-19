@@ -81,10 +81,3 @@ class ResPartner(models.Model):
     gender = fields.Selection([('male', 'Male'),
                                ('female', 'Female')],
                                 required=True)
-    #documenttype = fields.Selection([('D', 'DNI'),
-                                      # ('P', 'Pasaporte'),
-                                      # ('C', 'Permiso de Conducir'),
-                                      # ('I', 'Carta o Doc. de Identidad'),
-                                      # ('N', 'Permiso Residencia Español'),
-                                      # ('X', 'PermisoResidenciaEuropeo')],                                ],
-                                      # required=True)
