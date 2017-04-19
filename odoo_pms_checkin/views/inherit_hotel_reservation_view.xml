@@ -47,7 +47,7 @@ string="Open partner Pruebas"  class="oe_highlight"/> -->
             </record>
 
 
-        <record model="ir.ui.view" id="checkin_wizard_form_view">
+ <!--        <record model="ir.ui.view" id="checkin_wizard_form_view">
             <field name="name">wizard.form</field>
             <field name="model">checkin.wizard</field>
             <field name="arch" type="xml">
@@ -69,7 +69,7 @@ string="Open partner Pruebas"  class="oe_highlight"/> -->
                     res_model="checkin.wizard"
                     view_mode="form"
                     target="new"
-                    key2="client_action_multi"/>
+                    key2="client_action_multi"/>  -->
 
         </data>
     </openerp>

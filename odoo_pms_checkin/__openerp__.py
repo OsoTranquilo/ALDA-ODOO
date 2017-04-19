@@ -34,6 +34,7 @@
         'hotel_reservation',
     ],
     'data': [
+        'wizard/checkinwizard.xml',
         'views/cardex_partner_form.xml',
         'views/cardex_view.xml',
         'views/category_view.xml',
