@@ -42,14 +42,26 @@ class Cardex(models.Model):
     #    self.message = "Entra en %s" % (self.enter_date or "")
 
 
+    # @api.onchange('enter_date', 'exit_date') # if these fields are changed, call method
+    # def check_change_dates(self):
+    #     if self.exit_date < self.enter_date:
+    #         date_1 = datetime.datetime.strptime(self.enter_date, "%Y-%m-%d")
+    #         date_2 = date_1 + datetime.timedelta(days=1)
+    #         date_3 = self.exit_date
+    #         #self.exit_date = date_1 + datetime.timedelta(days=1)
+    #         self.update({'exit_date':date_1 + datetime.timedelta(days=1),})
+    #         raise ValidationError('Departure date in %s, is prior to arrival on %s. Check it now.' % (date_3, self.enter_date))
+
     @api.onchange('enter_date', 'exit_date') # if these fields are changed, call method
     def check_change_dates(self):
-        if self.exit_date < self.enter_date:
+        if self.exit_date <= self.enter_date:
             date_1 = datetime.datetime.strptime(self.enter_date, "%Y-%m-%d")
             date_2 = date_1 + datetime.timedelta(days=1)
-            date_3 = self.exit_date
-            self.exit_date = date_1 + datetime.timedelta(days=1)
-            raise ValidationError('Departure date in %s, is prior to arrival on %s. Check it now.' % (date_3, self.enter_date))
+            #self.exit_date = date_1 + datetime.timedelta(days=1)
+            self.update({'exit_date':date_2,})
+            raise ValidationError('Departure date, is prior to arrival. Check it now. %s' %(date_2))
+
+
 
 
     partner_id = fields.Many2one('res.partner', default=default_partner_id)

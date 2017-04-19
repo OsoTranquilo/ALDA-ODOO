@@ -18,6 +18,12 @@
                 <!-- Usando nuestro formulario-->
                 <field name="id_numbers"  placeholder="Identification..." context="{'form_view_ref':'odoo_pms_checkin.inherit_action_partner_id_numbers_form'}"/>
                 <div colspan="2">
+                    <label for="documenttype" string="Document"/>
+                    <field name="documenttype" placeholder="Select one..."/>                
+                    <field name="poldocument" placeholder="Document number"/>               
+                    <field name="polexpedition" placeholder="Document expedition date"/>
+                </div>
+                <div colspan="2">
                     <label for="street" string="Address"/>
                     <field name="street" placeholder="Street..."/>
                     <field name="street2"/>

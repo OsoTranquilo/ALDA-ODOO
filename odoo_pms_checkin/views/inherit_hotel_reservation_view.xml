@@ -2,11 +2,42 @@
     <openerp>      
         <data> 
 
+
+            <record id="hotel_checkin_form" model="ir.ui.view">
+            <field name="name">hotel_checkin_form</field>
+            <field name="model">hotel.reservation</field>
+            <field name="view_type">form</field>
+            <field name="priority">50</field>
+                        <field name="arch" type="xml">
+                            <form string="Checkin" >
+                                <field name='reservation_no'/>
+                                <field name='cardex_ids' context="{'reservation_id': active_id}"/>
+                            </form>
+                        </field>
+            </record>
+
+
+            <record id="action_hotel_checkin" model="ir.actions.act_window">
+                <field name="name">Action Hotel Checkin</field>
+                <field name="res_model">hotel.reservation</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">form</field>
+                <field name="context">{'res_id': active_id}</field>
+                <field name="view_id" ref="hotel_checkin_form"/>
+            </record>
+
             <record id="cardex_view_hotel_reservation_form" model="ir.ui.view">
                <field name="name">cardex.view_hotel_reservation_form</field>
                <field name="model">hotel.reservation</field>
+               <field eval="False" name="view_checkin_2"/>
                <field name="inherit_id" ref="hotel_reservation.view_hotel_reservation_form" />
                 <field name="arch" type="xml">
+                    <xpath expr="//button[@name='done']" position="after">
+<!--                         <button name="%(action_hotel_checkin)d" type="action" string="Check in" states="confirm" class="oe_highlight"/>
+                        <button type="action" name="%(base.action_partner_category_form)d"
+string="Open partner Pruebas"  class="oe_highlight"/> -->
+                        <button name="%(launch_checkin_wizard)d" string="Checkin"  type="action" context="{'reservation_id': id}" class="oe_highlight" />
+                    </xpath>
                     <xpath expr="//notebook" position="inside">
                         <page string='Cardex'>
                             <field name='cardex_ids' context="{'reservation_id': active_id}"/>
@@ -14,6 +45,31 @@
                     </xpath>
                 </field>
             </record>
+
+
+        <record model="ir.ui.view" id="checkin_wizard_form_view">
+            <field name="name">wizard.form</field>
+            <field name="model">checkin.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Add Checkin">
+                    <group>
+                        <field name="reservation_id"/>
+                        <field name="cardex_ids"/>
+                        <field name="enter_date"/>
+                        <field name="exit_date"/>
+                        <field name="partner_id"/>
+                        <field name="poldocument_cardex"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="launch_checkin_wizard"
+                    name="Add Checkin"
+                    res_model="checkin.wizard"
+                    view_mode="form"
+                    target="new"
+                    key2="client_action_multi"/>
 
         </data>
     </openerp>

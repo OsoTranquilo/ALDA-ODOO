@@ -1,8 +1,34 @@
 #-*- coding: utf-8 -*- 
 from openerp import models, fields, api
 
-class Inherit_res_partner(models.Model):
+
+class ResPartner(models.Model):
     _inherit = 'res.partner'
+
+    #@api.model
+    #def name_search(self, name, args=None, operator='ilike', limit=100):
+        # args = args or []
+        # if name:
+        #     # Be sure name_search is symetric to name_get
+        #     name = name.split(' / ')[-1]
+        #     args = [('name', operator, name)] + args
+        # categories = self.search(args, limit=limit)
+        # return categories.name_get()
+
+
+
+    poldocument = fields.Char('Document number', required=True)
+    polexpedition = fields.Date('Document expedition date', required=True)
+    documenttype = fields.Selection([
+        ('D', 'DNI'),
+        ('P', 'Pasaporte'),
+        ('C', 'Permiso de Conducir'),
+        ('I', 'Carta o Doc. de Identidad'),
+        ('N', 'Permiso Residencia Español'),
+        ('X', 'Permiso Residencia Europeo')],
+        help='blabla',
+        required=True,
+        string='Document type')
 
     # Validation for under age clients (16 years old)
     @api.constrains('birthdate_date')
@@ -55,3 +81,10 @@ class Inherit_res_partner(models.Model):
     gender = fields.Selection([('male', 'Male'),
                                ('female', 'Female')],
                                 required=True)
+    #documenttype = fields.Selection([('D', 'DNI'),
+                                      # ('P', 'Pasaporte'),
+                                      # ('C', 'Permiso de Conducir'),
+                                      # ('I', 'Carta o Doc. de Identidad'),
+                                      # ('N', 'Permiso Residencia Español'),
+                                      # ('X', 'PermisoResidenciaEuropeo')],                                ],
+                                      # required=True)
