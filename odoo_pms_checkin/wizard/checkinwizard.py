@@ -65,3 +65,5 @@ class Wizard(models.TransientModel):
                                 required=True, related='partner_id.gender')
     firstname_cardex = fields.Char('Firstname', required=True, related='partner_id.firstname')
     lastname_cardex = fields.Char('Lastname', required=True, related='partner_id.lastname')
+    email_cardex = fields.Char('E-mail', related='partner_id.email')
+    mobile_cardex = fields.Char('Mobile', related='partner_id.mobile')

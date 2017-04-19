@@ -15,10 +15,12 @@
                             <field name="poldocument_cardex"/>
                             <field name="polexpedition_cardex"/>
                             <field name="documenttype_cardex"/>
-                            <field name="birthdate_date_cardex"/>
                             <field name="gender_cardex"/>
+                            <field name="birthdate_date_cardex"/>
                             <field name="firstname_cardex"/>
                             <field name="lastname_cardex"/>
+                            <field name="email_cardex"/>
+                            <field name="mobile_cardex"/>
                         </group>
                     </form>
                 </field>
