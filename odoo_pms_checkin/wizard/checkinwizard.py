@@ -72,3 +72,17 @@ class Wizard(models.TransientModel):
             required=True,
             related='partner_id.code_ine')
     category_id_cardex = fields.Many2many('res.partner.category', 'id', related='partner_id.category_id', required=True)
+
+    # you can use @api.multi for collection processing like this:
+    # for ticket in self: ...something do here
+    # or you can use @api.model for processing only one object
+    @api.multi
+    def action_save_check(self):
+        # here you have values from form and context
+        print(self.email_cardex)
+        # todo something here... and close dialog
+        return
+    @api.multi
+    def action_close_check(self):
+        #print(self.email_cardex)
+        return {'type': 'ir.actions.act_window_close'}

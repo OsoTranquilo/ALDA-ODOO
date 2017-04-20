@@ -25,6 +25,9 @@
 
                             <field name="category_id_cardex" widget="many2many_tags" placeholder="Tags..."/>
                         </group>
+                        <button string="Close" name="action_close_check" type="object"/>
+                        <button string="Save" name="action_save_check" type="object"/>
+
                     </form>
                 </field>
             </record>
