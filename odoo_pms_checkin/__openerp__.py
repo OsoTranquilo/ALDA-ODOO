@@ -32,6 +32,9 @@
     'depends': [
         'stock',
         'hotel_reservation',
+        'partner_contact_gender',
+        'partner_contact_birthdate',
+        'partner_firstname',
     ],
     'data': [
         'wizard/checkinwizard.xml',

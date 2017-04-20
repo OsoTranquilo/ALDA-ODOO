@@ -66,7 +66,7 @@ class Wizard(models.TransientModel):
     firstname_cardex = fields.Char('Firstname', required=True, related='partner_id.firstname')
     lastname_cardex = fields.Char('Lastname', required=True, related='partner_id.lastname')
     email_cardex = fields.Char('E-mail', related='partner_id.email')
-    mobile_cardex = fields.Char('Mobile', related='partner_id.mobile')
+    mobile_cardex = fields.Char('Mobile', related='partner_id.mobile', store=True)
     code_ine_cardex = fields.Many2one('code_ine',
             help='Country or province of origin. Used for INE statistics.',
             required=True,
