@@ -21,6 +21,8 @@
                             <field name="lastname_cardex"/>
                             <field name="email_cardex"/>
                             <field name="mobile_cardex"/>
+                            <label for="category_id_cardex" string="Tags"/>
+                            <field name="category_id_cardex" widget="many2many_tags" placeholder="Tags..."/>
                         </group>
                     </form>
                 </field>
