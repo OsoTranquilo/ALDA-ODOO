@@ -81,3 +81,5 @@ class ResPartner(models.Model):
     gender = fields.Selection([('male', 'Male'),
                                ('female', 'Female')],
                                 required=True)
+    code_ine = fields.Many2one('code_ine',
+            help='Country or province of origin. Used for INE statistics.')

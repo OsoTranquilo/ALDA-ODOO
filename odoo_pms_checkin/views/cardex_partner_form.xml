@@ -50,6 +50,10 @@
                     <field name="phone" placeholder="Phone" />
                 </div>
                 <div colspan="2">
+                    <label for="code_ine" string="INE Code"/>
+                    <field name="code_ine" placeholder="Code in INE" options="{'no_create': True,'no_open': True}"/>
+                </div>
+                <div colspan="2">
                     <label for="category_id" string="Tags"/>
                     <field name="category_id" widget="many2many_tags" placeholder="Tags..."/>
                     <label for="comment" string="Comment"/>

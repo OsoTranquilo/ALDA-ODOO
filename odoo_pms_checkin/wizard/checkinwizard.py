@@ -67,4 +67,8 @@ class Wizard(models.TransientModel):
     lastname_cardex = fields.Char('Lastname', required=True, related='partner_id.lastname')
     email_cardex = fields.Char('E-mail', related='partner_id.email')
     mobile_cardex = fields.Char('Mobile', related='partner_id.mobile')
-    category_id_cardex = fields.Many2many('res.partner.category', 'id', related='partner_id.category_id')
+    code_ine_cardex = fields.Many2one('code_ine',
+            help='Country or province of origin. Used for INE statistics.',
+            required=True,
+            related='partner_id.code_ine')
+    category_id_cardex = fields.Many2many('res.partner.category', 'id', related='partner_id.category_id', required=True)
