@@ -6,26 +6,50 @@
                 <field name="model">checkin.wizard</field>
                 <field name="arch" type="xml">
                     <form string="Add Checkin">
-                        <group>
-                            <field name="reservation_id" readonly="1"/>
+                        <label for="reservation_id" string="Resevation"/>
+                        <h1><field name="reservation_id"  readonly="1"/></h1>
+                        <!-- <group> -->
+                        <div col="4">
+                            <label for="cardex_ids" string="Cardex in the Reservation"/>
                             <field name="cardex_ids"/>
-                            <field name="enter_date"/>
-                            <field name="exit_date"/>
-                            <field name="partner_id"/>
-                            <field name="poldocument_cardex"/>
-                            <field name="polexpedition_cardex"/>
-                            <field name="documenttype_cardex"/>
+                            <div colspan="2">
+                                <label for="enter_date" string="Enter date"/>
+                                <field name="enter_date" style="margin-right: 2em" class='oe_inline'/>
+                                <label for="exit_date" string="Exit date"/>
+                                <field name="exit_date" style="max-width: 11em"/>
+                            </div>
+                            <newline />
+                            <label for="partner_id" string="Partner"/>
+                            <field name="partner_id" string="Partner2" style="max-width: 90%%"/>
+                            <newline />
+                            <div colspan="2">
+                                <h2><label for="poldocument_cardex" string="Document number"/>
+                                <field name="poldocument_cardex"/></h2>
+                                <label for="documenttype_cardex" string="Document type"/>
+                                <field name="documenttype_cardex" class='oe_inline'/>
+
+                                <label for="polexpedition_cardex" string="Expedition date"/>
+                                <field name="polexpedition_cardex" class='oe_inline'/>
+                            </div>
+                            <label for="gender_cardex" string="Cardex in the Reservation"/>
                             <field name="gender_cardex"/>
+                            <label for="birthdate_date_cardex" string="Cardex in the Reservation"/>
                             <field name="birthdate_date_cardex"/>
+                            <label for="firstname_cardex" string="Cardex in the Reservation"/>
                             <field name="firstname_cardex"/>
+                            <label for="lastname_cardex" string="Cardex in the Reservation"/>
                             <field name="lastname_cardex"/>
+                            <label for="email_cardex" string="Cardex in the Reservation"/>
                             <field name="email_cardex"/>
+                            <label for="mobile_cardex" string="Cardex in the Reservation"/>
                             <field name="mobile_cardex"/>
+                            <label for="code_ine_cardex" string="Cardex in the Reservation"/>
                             <field name="code_ine_cardex" placeholder="Code in INE" options="{'no_create': True,'no_open': True}"/>
 
                             <field name="category_id_cardex" widget="many2many_tags" placeholder="Tags..."/>
-                        </group>
-                        <button string="Close" name="action_close_check" type="object"/>
+                        <!-- </group> -->
+                    </div>
+                        <button string="Close" name="action_close_check" type="object" class="btn-primary" />
                         <button string="Save" name="action_save_check" type="object"/>
 
                     </form>
