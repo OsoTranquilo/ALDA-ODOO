@@ -35,12 +35,23 @@ class Wizard(models.TransientModel):
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.cardex_ids
 
+    def default_count_cardex(self):       
+        if 'reservation_id' in self.env.context:
+            reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
+            return reservation.cardex_count
+
+    def default_pending_cardex(self):       
+        if 'reservation_id' in self.env.context:
+            reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
+            return reservation.adults + reservation.children - reservation.cardex_count
 
 
 
 
 
     cardex_ids = fields.Many2many('cardex', 'reservation_id', default=default_cardex_ids)
+    count_cardex = fields.Integer('Cardex counter', default=default_count_cardex)
+    pending_cardex = fields.Integer('Cardex pending', default=default_pending_cardex)
     partner_id = fields.Many2one('res.partner', default=default_partner_id)
     reservation_id = fields.Many2one('hotel.reservation', default=default_reservation_id, readonly=True)
     enter_date = fields.Date( default=default_enter_date, required=True)
@@ -72,13 +83,15 @@ class Wizard(models.TransientModel):
             related='partner_id.code_ine')
     category_id_cardex = fields.Many2many('res.partner.category', 'id', related='partner_id.category_id', required=True)
 
+
+
     # you can use @api.multi for collection processing like this:
     # for ticket in self: ...something do here
     # or you can use @api.model for processing only one object
     @api.multi
     def action_save_check(self):
         # here you have values from form and context
-        print(self.email_cardex)
+        #print(self.email_cardex)
         # todo something here... and close dialog
         return
     @api.multi
