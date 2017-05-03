@@ -68,4 +68,5 @@ class ResPartner(models.Model):
                                ('female', 'Female')],
                                 required=True)
     code_ine = fields.Many2one('code_ine',
-            help='Country or province of origin. Used for INE statistics.')
+            help='Country or province of origin. Used for INE statistics.',
+            required=True)

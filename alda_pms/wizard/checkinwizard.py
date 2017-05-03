@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from openerp import models, fields, api
+from openerp.exceptions import UserError
+from openerp.tools.translate import _
+
+
 
 
 class Wizard(models.TransientModel):
@@ -10,24 +14,32 @@ class Wizard(models.TransientModel):
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.checkin
+        if 'enter_date' in self.env.context:
+            return self.env.context['enter_date']
         return False
 
     def default_exit_date(self):        
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.checkout
+        if 'exit_date' in self.env.context:
+            return self.env.context['exit_date']
         return False
 
     def default_reservation_id(self):        
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation
-        return False        
+        if 'reserva_id' in self.env.context:
+            return self.env.context['reserva_id']
+        return False
 
     def default_partner_id(self):        
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.partner_id
+        if 'partner_id' in self.env.context:
+            return self.env.context['partner_id']
         return False
 
     def default_cardex_ids(self):       
@@ -45,9 +57,10 @@ class Wizard(models.TransientModel):
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.adults + reservation.children - reservation.cardex_count
 
-
-
-
+    def comp_checkin_list_visible(self):
+        if 'partner_id' in self.env.context:
+            return False
+        return True
 
     cardex_ids = fields.Many2many('cardex', 'reservation_id', default=default_cardex_ids)
     count_cardex = fields.Integer('Cardex counter', default=default_count_cardex)
@@ -56,6 +69,7 @@ class Wizard(models.TransientModel):
     reservation_id = fields.Many2one('hotel.reservation', default=default_reservation_id, readonly=True)
     enter_date = fields.Date( default=default_enter_date, required=True)
     exit_date = fields.Date( default=default_exit_date, required=True)
+    
     poldocument_cardex = fields.Char('Doc. number', required=True, related='partner_id.poldocument')
     polexpedition_cardex = fields.Date('Expedition date', required=True, related='partner_id.polexpedition')
     documenttype_cardex = fields.Selection([
@@ -82,6 +96,20 @@ class Wizard(models.TransientModel):
             required=True,
             related='partner_id.code_ine')
     category_id_cardex = fields.Many2many('res.partner.category', 'id', related='partner_id.category_id', required=True)
+
+    list_checkin_cardex = fields.Boolean(default=comp_checkin_list_visible)
+
+
+    @api.multi
+    def write(self, vals):
+        #UserError( _('Your msg here') )
+        #self.reservation_id.write('cardex_ids':(0,False,))
+        # {'partner_id': self.partner_id,
+        #  'reservation_id':self.reservation_id,
+        #  'enter_date':self.enter_date,
+        #  'exit_date':self.exit_date})
+        return
+
 
 
 

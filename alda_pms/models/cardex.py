@@ -49,6 +49,10 @@ class Cardex(models.Model):
 
     partner_id = fields.Many2one('res.partner', default=default_partner_id)
     reservation_id = fields.Many2one('hotel.reservation', default=default_reservation_id, readonly=True)
-    ine_room_id = fields.Many2one('code_ine', help='Room type in INE statistics.', required=True)
+    #ine_room_id = fields.Many2one('code_ine', help='Room type in INE statistics.', required=True)
     enter_date = fields.Date( default=default_enter_date, required=True)
     exit_date = fields.Date( default=default_exit_date, required=True)
+
+    @api.one
+    def generate_code(self):
+        pass

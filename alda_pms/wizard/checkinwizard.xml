@@ -47,7 +47,8 @@
                         <label for="reservation_id" string="Resevation"/>
                         <h1><field name="reservation_id"  readonly="1"/></h1>
                         </group>
-                            <field name="cardex_ids" readonly="1"/>                         
+                            <field name="cardex_ids" readonly="1"
+                                attrs="{'invisible': [('list_checkin_cardex','=','False')]}"/>
                         <group col="4">
                             <field name="enter_date" colspan="2"/>
                             <field name="exit_date" colspan="2"/>
@@ -81,7 +82,7 @@
 <!--                         <button string="Close" name="action_close_check" type="object" class="btn-primary" />
                         <button string="Save" name="action_save_check" type="object"/> -->
                         <footer> 
-                            <button name="write" type="object" string="Save" class="btn-primary"/>
+                            <button name="write" type="object" string="Save new line" class="btn-primary"/>
                             <button name="cancel" string="Cancel" special="cancel"/>
                         </footer>
                     </sheet>
