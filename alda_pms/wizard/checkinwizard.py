@@ -102,6 +102,7 @@ class Wizard(models.TransientModel):
 
     @api.multi
     def write(self, vals):
+        
         #UserError( _('Your msg here') )
         #self.reservation_id.write('cardex_ids':(0,False,))
         # {'partner_id': self.partner_id,
