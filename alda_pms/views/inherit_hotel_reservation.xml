@@ -33,11 +33,22 @@
                <field name="inherit_id" ref="hotel_reservation.view_hotel_reservation_form" />
                 <field name="arch" type="xml">
                     <xpath expr="//button[@name='done']" position="after">
-                        <button name="%(launch_checkin_wizard)d" string="Checkin"  type="action" context="{'reservation_id': id}" class="oe_highlight" />
+                        <button name="%(launch_checkin_wizard)d" string="Checkin"
+                          type="action" context="{'reservation_id': id}" 
+                           />
+                        <button name="%(launch_checkin_wizard)d" string="Checkin"
+                          type="action" context="{'reservation_id': id}" 
+                          class="oe_highlight"
+                          attrs="{'invisible': [('cardex_pending','=','False')]}" />
+                        <button name="%(launch_checkin_wizard)d" string="Checkin"
+                          type="action" context="{'reservation_id': id}" 
+                          class="oe_highlight"
+                          attrs="{'invisible': [('cardex_pending','=','True')]}" />
                     </xpath>
                     <xpath expr="//notebook" position="inside">
                         <page string='Cardex'>
                             <field name='cardex_ids' context="{'reservation_id': active_id}"/>
+                            <field name='cardex_pending'/>
                         </page> 
                     </xpath>
                 </field>

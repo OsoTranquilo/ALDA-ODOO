@@ -59,8 +59,8 @@ class Wizard(models.TransientModel):
 
     def comp_checkin_list_visible(self):
         if 'partner_id' in self.env.context:
-            return False
-        return True
+            self.list_checkin_cardex = False
+        return
 
     cardex_ids = fields.Many2many('cardex', 'reservation_id', default=default_cardex_ids)
     count_cardex = fields.Integer('Cardex counter', default=default_count_cardex)
@@ -97,7 +97,7 @@ class Wizard(models.TransientModel):
             related='partner_id.code_ine')
     category_id_cardex = fields.Many2many('res.partner.category', 'id', related='partner_id.category_id', required=True)
 
-    list_checkin_cardex = fields.Boolean(default=comp_checkin_list_visible)
+    list_checkin_cardex = fields.Boolean(compute=comp_checkin_list_visible, default=True)
 
 
     @api.multi
