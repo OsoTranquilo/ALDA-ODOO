@@ -39,11 +39,11 @@
                         <button name="%(launch_checkin_wizard)d" string="Checkin"
                           type="action" context="{'reservation_id': id}" 
                           class="oe_highlight"
-                          attrs="{'invisible': [('cardex_pending','=','False')]}" />
+                          attrs="{'invisible': [('cardex_pending','=',False)]}" />
                         <button name="%(launch_checkin_wizard)d" string="Checkin"
                           type="action" context="{'reservation_id': id}" 
                           class="oe_highlight"
-                          attrs="{'invisible': [('cardex_pending','=','True')]}" />
+                          attrs="{'invisible': [('cardex_pending','=',True)]}" />
                     </xpath>
                     <xpath expr="//notebook" position="inside">
                         <page string='Cardex'>

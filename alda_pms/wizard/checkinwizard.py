@@ -97,12 +97,12 @@ class Wizard(models.TransientModel):
             related='partner_id.code_ine')
     category_id_cardex = fields.Many2many('res.partner.category', 'id', related='partner_id.category_id', required=True)
 
-    list_checkin_cardex = fields.Boolean(compute=comp_checkin_list_visible, default=True)
+    list_checkin_cardex = fields.Boolean(compute=comp_checkin_list_visible, default=True, store=True)
 
 
     @api.multi
     def write(self, vals):
-        
+
         #UserError( _('Your msg here') )
         #self.reservation_id.write('cardex_ids':(0,False,))
         # {'partner_id': self.partner_id,
@@ -119,9 +119,11 @@ class Wizard(models.TransientModel):
     # or you can use @api.model for processing only one object
     @api.multi
     def action_save_check(self):
-        # here you have values from form and context
-        #print(self.email_cardex)
-        # todo something here... and close dialog
+        record_id = self.env[self._context.get('active_model')].browse(self._context.get('active_id'))
+        record_id.write({'cardex_ids':(0,False,{'partner_id': self.partner_id,
+          'reservation_id':self.reservation_id,
+          'enter_date':self.enter_date,
+          'exit_date':self.exit_date})})
         return
     @api.multi
     def action_close_check(self):
