@@ -53,6 +53,3 @@ class Cardex(models.Model):
     enter_date = fields.Date( default=default_enter_date, required=True)
     exit_date = fields.Date( default=default_exit_date, required=True)
 
-    @api.one
-    def generate_code(self):
-        pass
