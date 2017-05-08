@@ -3,8 +3,8 @@
 from openerp import models, fields, api
 from openerp.exceptions import UserError
 from openerp.tools.translate import _
-
-
+import logging
+_logger=logging.getLogger(__name__)
 
 
 class Wizard(models.TransientModel):
@@ -115,15 +115,17 @@ class Wizard(models.TransientModel):
     # or you can use @api.model for processing only one object
     @api.multi
     def action_save_check(self):
-        cardex_val={'reservation_id':self.reservation_id,
-          'partner_id':self.partner_id,
+        cardex_val={#'reservation_id':self.reservation_id,
+          'partner_id':self.partner_id.id,
           'enter_date':self.enter_date,
           'exit_date':self.exit_date}
         #cardex_tmp = self.env['hotel.reservation'].create(cardex_val)
 
         #record_id = self.env[self._context.get('active_model')].browse(self._context.get('active_id'))
-        record_id = self.env['hotel.reservation'].browse(self._context.get('active_id'))
-        record_id.create({'cardex_ids':(0,False,cardex_val)})
+        record_id = self.env[self._context.get('active_model')].browse(self._context.get('active_id'))
+        _logger.info(self.exit_date)
+        record_id.write({'cardex_ids':[(0,False,cardex_val)]})
+
         #record_id.write({'cardex_ids':(0,False,cardex_val)})
         #    {'partner_id': self.partner_id,
         #   'reservation_id':self.reservation_id,
