@@ -62,6 +62,11 @@ class Wizard(models.TransientModel):
             self.list_checkin_cardex = False
         return
 
+    def comp_checkin_edit(self):
+        if 'edit_cardex' in self.env.context:
+            return True
+        return False
+
     cardex_ids = fields.Many2many('cardex', 'reservation_id', default=default_cardex_ids)
     count_cardex = fields.Integer('Cardex counter', default=default_count_cardex)
     pending_cardex = fields.Integer('Cardex pending', default=default_pending_cardex)
@@ -98,17 +103,7 @@ class Wizard(models.TransientModel):
     category_id_cardex = fields.Many2many('res.partner.category', 'id', related='partner_id.category_id', required=True)
 
     list_checkin_cardex = fields.Boolean(compute=comp_checkin_list_visible, default=True, store=True)
-
-
-    @api.multi
-    def write(self, vals):
-        #UserError( _('Your msg here') )
-        #self.reservation_id.write('cardex_ids':(0,False,))
-        # {'partner_id': self.partner_id,
-        #  'reservation_id':self.reservation_id,
-        #  'enter_date':self.enter_date,
-        #  'exit_date':self.exit_date})
-        return
+    edit_checkin_cardex = fields.Boolean(default=comp_checkin_edit, store=True)
 
     # you can use @api.multi for collection processing like this:
     # for ticket in self: ...something do here
@@ -119,21 +114,21 @@ class Wizard(models.TransientModel):
           'partner_id':self.partner_id.id,
           'enter_date':self.enter_date,
           'exit_date':self.exit_date}
-        #cardex_tmp = self.env['hotel.reservation'].create(cardex_val)
-
-        #record_id = self.env[self._context.get('active_model')].browse(self._context.get('active_id'))
         record_id = self.env[self._context.get('active_model')].browse(self._context.get('active_id'))
-        _logger.info(self.exit_date)
         record_id.write({'cardex_ids':[(0,False,cardex_val)]})
-
-        #record_id.write({'cardex_ids':(0,False,cardex_val)})
-        #    {'partner_id': self.partner_id,
-        #   'reservation_id':self.reservation_id,
-        #   'enter_date':self.enter_date,
-        #   'exit_date':self.exit_date})})
         return
 
     @api.multi
-    def action_close_check(self):
-        #print(self.email_cardex)
-        return {'type': 'ir.actions.act_window_close'}
+    def action_update_check(self):
+
+        record_id = self.env[self._context.get('active_model')].browse(self._context.get('active_id'))
+        #_logger.info(record_id)
+        #_logger.info(cardex_val)
+        record_id.write({#'reservation_id':self.reservation_id,
+          'partner_id':self.partner_id.id,
+          'enter_date':self.enter_date,
+          'exit_date':self.exit_date})
+        #return
+        #return {'type': 'launch_checkin_wizard_list','tag': 'reload',}
+        res = { 'type': 'ir.actions.client', 'tag': 'load', 'reservation_id': self.reservation_id }
+        return res
