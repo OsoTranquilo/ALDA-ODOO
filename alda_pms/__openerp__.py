@@ -44,11 +44,14 @@
         'views/code_ine.xml',
         'views/inherit_hotel_reservation.xml',
         'views/inherit_res_company.xml',
-        #'views/inherit_res_partner_id_number_view.xml',
+        #'views/report_viajero.xml',
 
         'data/code_ine.csv',
         'data/category.csv',
-        #'data/res.partner.id_category.csv',
+        'data/report_viajero_paperformat.xml',
+
+        #'report/report_parte_viajero.xml',
+
     ],
     'test': [
     ],

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_viajero">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+            <div class="page">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <h2>HOLA MUNDO</h2>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

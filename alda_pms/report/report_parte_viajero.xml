@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<openerp>
+    <data>
+        <report
+            id="action_report_viajero"
+            string="Parte de Viajero"
+            model="cardex"
+            report_type="qweb-pdf"
+            name="report.viajero"
+            file="report.viajero"
+            paperformat="report.viajero.paperformat"
+        />
+    </data>
+</openerp>
