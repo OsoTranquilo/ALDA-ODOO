@@ -1,54 +1,8 @@
 <?xml version="1.0"?> 
     <openerp>      
         <data> 
-
-            <record id="launch_checkin_wizard_add" model="ir.actions.act_window">
-                <field name="name">Add Check</field>
-                <field name="res_model">checkin.wizard</field>
-                <field name="view_id" ref="checkin_wizard_form_2"/>
-            </record>
-            <record id="launch_checkin_wizard_list" model="ir.actions.act_window">
-                <field name="name">List Checks</field>
-                <field name="res_model">checkin.wizard</field>
-                <field name="view_id" ref="checkin_wizard_form_view"/>
-            </record>
-                        
-            <act_window id="launch_checkin_wizard"
-                        name="List Checkin"
-                        res_model="checkin.wizard"
-                        view_mode="form"
-                        target="new"
-                        key2="client_action_multi"/>
-
-            <record id="checkin_wizard_form_view" model="ir.ui.view">
-                <field name="name">wizard.form</field>
-                <field name="model">checkin.wizard</field>
-                <field name="arch" type="xml">
-                    <form string="List Checkin">
-                    <sheet>
-                        <group col="4">
-                        <label for="reservation_id" string="Resevation"/>
-                        <h1><field name="reservation_id"  readonly="1"/></h1>
-                        <button type="action" class="oe_stat_button" 
-                            id="cardex_smart_button" 
-                            icon="fa-user-plus" 
-                            name="%(launch_checkin_wizard_add)d" 
-                            context="{'reservation_id': reservation_id, 'hidden_cardex': True}">
-                            <div>
-                                <field name="pending_cardex" 
-                                string="Pending" widget="statinfo"/>
-                            </div>
-                        </button>
-                        </group>
-                            <field name="cardex_ids" readonly="1"/>
-                        </sheet>
-                    </form>
-                </field>
-            </record>
-
-
-
-            <record id="checkin_wizard_form_2" model="ir.ui.view">
+         
+           <record id="checkin_wizard_form_2" model="ir.ui.view">
                 <field name="name">wizard.form2</field>
                 <field name="model">checkin.wizard</field>
                 <field name="arch" type="xml">
@@ -107,6 +61,53 @@
                     </form>
                 </field>
             </record>
+
+            <record id="launch_checkin_wizard_add" model="ir.actions.act_window">
+                <field name="name">Add Check</field>
+                <field name="res_model">checkin.wizard</field>
+                <field name="view_id" ref="checkin_wizard_form_2"/>
+            </record>   
+           
+	    <record id="checkin_wizard_form_view" model="ir.ui.view">
+                <field name="name">wizard.form</field>
+                <field name="model">checkin.wizard</field>
+                <field name="arch" type="xml">
+                    <form string="List Checkin">
+                    <sheet>
+                        <group col="4">
+                        <label for="reservation_id" string="Resevation"/>
+                        <h1><field name="reservation_id"  readonly="1"/></h1>
+                        <button type="action" class="oe_stat_button" 
+                            id="cardex_smart_button" 
+                            icon="fa-user-plus" 
+                            name="%(launch_checkin_wizard_add)d" 
+                            context="{'reservation_id': reservation_id, 'hidden_cardex': True}">
+                            <div>
+                                <field name="pending_cardex" 
+                                string="Pending" widget="statinfo"/>
+                            </div>
+                        </button>
+                        </group>
+                            <field name="cardex_ids" readonly="1"/>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+
+            <record id="launch_checkin_wizard_list" model="ir.actions.act_window">
+                <field name="name">List Checks</field>
+                <field name="res_model">checkin.wizard</field>
+                <field name="view_id" ref="checkin_wizard_form_view"/>
+            </record>
+
+            <act_window id="launch_checkin_wizard"
+                        name="List Checkin"
+                        res_model="checkin.wizard"
+                        view_mode="form"
+                        target="new"
+                        key2="client_action_multi"/>
+  
 
         </data>
 
