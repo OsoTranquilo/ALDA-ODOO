@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data>
-<template id="report_viajero">
+<template id="report.viajero">
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
+        <t t-foreach='o.partner_id' t-as='partner'>
+        <t t-foreach='o.reservation_id' t-as='reservation'>
             <div class="page">
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <h2>HOLA MUNDO</h2>
+                        <p>
+                            Nombre: <span t-field="o.partner_id"/><br/>
+                            Nacimiento: <t t-esc="partner.birthdate_date"/><br/>
+                            <span t-field="o.reservation_id"/><br/>
+                            Adultos: <t t-esc="reservation.adults"/><br/>
+                            Niños: <span t-esc="reservation.children"/><br/>
+                            <span t-field="o.enter_date"/><br/>
+                            <span t-field="o.exit_date"/><br/>
+                        </p>
                     </div>
                 </div>
             </div>
+        </t>
+        </t>
         </t>
     </t>
 </template>
