@@ -38,7 +38,8 @@
                           <button type="action" class="oe_stat_button" 
                             id="cardex_smart_button" 
                             icon="fa-user-plus" 
-                            name="%(launch_checkin_wizard_add)d" 
+                            name="%(launch_checkin_wizard_add)d"
+                            attrs="{'invisible': [('cardex_pending_num','&lt;=',0)]}"
                             context="{'reservation_id': id, 'hidden_cardex': True}">
                           <div>
                             <field name="cardex_pending_num" 
@@ -48,7 +49,8 @@
                           <button type="action" class="oe_stat_button" 
                             id="cardex_smart_button" 
                             icon="fa-bed" 
-                            name="%(launch_checkin_wizard_list)d" 
+                            name="%(launch_checkin_wizard_list)d"
+                            attrs="{'invisible': [('cardex_count','&lt;=',0)]}"
                             context="{'reservation_id': id, 'hidden_cardex': False}">
                           <div>
                             <field name="cardex_count" 
