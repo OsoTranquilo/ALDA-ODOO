@@ -2,14 +2,88 @@
 <openerp>
 <data>
 <template id="report.viajero">
+    <style type="text/css">
+        .page {margin: 0 auto; font-family:kiro, Verdana, Geneva, sans-serif;}
+        img {max-width:100%;}
+        #cabezera{width:100%; margin:0 auto;}
+        #cabezera h3 {font-size:0.93em;}
+        #datos{ text-align: center; padding:0 15px; font-size:0.85em;}
+        .bloque {margin:5px 0;}
+        td {font-size:1.5em;}
+        .fecha {font-weight:bold;font-size:0.85em;}
+        .firma {width: 80%; border:dotted 1px; height: 80px; margin:0 auto;}
+        .legal p {font-size:0.6em;}
+        h3, #pie, .legal, #cabezera {text-align:center;}
+        h3, #cabezera, td {font-family:kiro, Verdana, Geneva, sans-serif;}
+        h3 {font-size:1.25em;}
+        .numerocheck {font-size:0.9em;}
+    </style>
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
         <t t-foreach='o.partner_id' t-as='partner'>
         <t t-foreach='o.reservation_id' t-as='reservation'>
+
+            <div class="page">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-center lead">
+                                <img src='/alda_pms/static/src/img/logo_alda_bn.png' 
+                                style="width:100%; max-heigth:50px"/>
+
+                                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Lorem ipsum dolor sit amet
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Lorem ipsum dolor sit amet
+                        </div>
+                        <div class="col-md-9">
+                            <strong>consectetur adipiscing elit</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Lorem ipsum dolor sit amet
+                        </div>
+                        <div class="col-md-9">
+                            <strong>consectetur adipiscing elit</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Lorem ipsum dolor sit amet
+                        </div>
+                        <div class="col-md-9">
+                            <strong>consectetur adipiscing elit</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-center lead">
+                                Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
             <div class="page">
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <h2>HOLA MUNDO</h2>
+                        <img src='/alda_pms/static/src/img/logo_alda_bn.png' 
+                            style="width:100%;"/>
                         <p>
                             Nombre: <span t-field="o.partner_id"/><br/>
                             Nacimiento: <t t-esc="partner.birthdate_date"/><br/>
@@ -20,6 +94,104 @@
                             <span t-field="o.exit_date"/><br/>
                         </p>
                     </div>
+<!-- 
+<div class="parte">
+        <div id="cabezera">
+        <img src="images/logo_alda_bn_a.png" width="100%" />
+        <h3>PARTE DE ENTRADA DE VIAJEROS</h3>
+        </div>
+        <div id="datos">
+        <p class="numerocheck">Nº parte: '.$ncheck.'</p>
+        <p><strong>CIF: '.$coocif.'</strong><br/>
+        <strong>'.$coocentro.'</strong><br/>
+        <strong>'.$coodirecc.', '.$coociudad.'</strong><br/></p>
+        <h3>DOCUMENTO DEL VIAJERO</h3>
+        </div>
+        <div id="d1" class="bloque">
+        <table width="100%" border="1">
+          <tr>
+            <td width="185">Nº de documento</td>
+            <td width="384"> <strong>'.$documento.'</strong></td>
+          </tr>
+          <tr>
+            <td width="185">Tipo</td>
+            <td width="384"> <strong>'.$tipodocumento.'</strong></td>
+          </tr>
+          <tr>
+            <td width="185">Fecha expedición</td>
+            <td width="384"> <strong>'.date('d / m / Y',strtotime($expedicion)).'</strong></td>
+          </tr>
+        </table>
+        </div>
+        <div id="d2" class="bloque">
+        <table width="100%" border="1">
+          <tr>
+            <td width="185">Primer apellido</td>
+            <td width="384"> <strong>'.$apellido.'</strong></td>
+          </tr>
+          <tr>
+            <td width="185">Segundo apellido</td>
+            <td width="384"> <strong>'.$apellido2.'</strong></td>
+          </tr>
+          <tr>
+            <td width="185">Nombre</td>
+            <td width="384"> <strong>'.$nombre.'</strong></td>
+          </tr>
+        </table>
+        </div>
+        <div id="d3" class="bloque">
+        <table width="100%" border="1">
+          <tr>
+            <td width="185">Sexo</td>
+            <td width="384"> <strong>'.$sexo.'</strong></td>
+          </tr>
+          <tr>
+            <td width="185">F. de nacimiento</td>
+            <td width="384"> <strong>'.date('d / m / Y',strtotime($nacimiento)).'</strong></td>
+          </tr>
+          <tr>
+            <td width="185">Procedencia</td>
+            <td width="384"> <strong>'.$ineid.'</strong></td>
+          </tr>
+        </table>
+        </div>
+        <div id="d4" class="bloque">
+        <table width="100%" border="1">
+          <tr>
+            <td width="185">Fecha de entrada</td>
+            <td width="384"> <strong>'.date('d / m / Y',strtotime($modelk- entrada)).'</strong></td>
+          </tr>
+          <tr>
+            <td width="185">Fecha de salida</td>
+            <td width="384"> <strong>'.date('d / m / Y',strtotime($modelk- salida)).'</strong></td>
+          </tr>
+        </table>
+        </div>
+        <div id="pie">';
+
+        <p><span class="fecha">'.$coociudad.', a '.date('d / m / Y',strtotime($modelk- timestamp)).'</span><br/>
+        Firma del viajero</p>
+        </div>
+        <div class="firma"></div>
+        <div class="legal">
+        '.$avisohorario.'
+        <p>La recogida y tratamiento se hará de acuerdo con la Ley Orgánica 15/1999, de 13 de dic. de protección de datos de carácter personal y al amparo de lo dispuesto en el art. 12.1 de la Ley Orgánica 1/1992, de 21 de febrero, sobre protección de la seguridad ciudadana.</p></div>
+        </div>
+        <div className="page-break"></div>';
+
+        <p><span class="fecha">'.$coociudad.', a '.date('d / m / Y',strtotime($modelk- timestamp)).'</span><br/>
+        COPIA PARA EL USUARIO</p>
+        </div>
+        <div class="legal">
+        '.$avisohorario.'
+        <p>La recogida y tratamiento se hará de acuerdo con la Ley Orgánica 15/1999, de 13 de dic. de protección de datos de carácter personal y al amparo de lo dispuesto en el art. 12.1 de la Ley Orgánica 1/1992, de 21 de febrero, sobre protección de la seguridad ciudadana.</p></div>
+        </div>
+
+
+ -->
+
+
+
                 </div>
             </div>
         </t>
