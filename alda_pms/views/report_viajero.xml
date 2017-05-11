@@ -3,10 +3,14 @@
 <data>
 <template id="report.viajero">
     <style type="text/css">
+        .titulo {font-size:0.93em;}
+        .titulo2 {font-size:1.93em;}
+
+
         .page {margin: 0 auto; font-family:kiro, Verdana, Geneva, sans-serif;}
         img {max-width:100%;}
-        #cabezera{width:100%; margin:0 auto;}
-        #cabezera h3 {font-size:0.93em;}
+        .cabezera{width:100%; margin:0 auto;}
+        .cabezera h3 {font-size:0.93em;}
         #datos{ text-align: center; padding:0 15px; font-size:0.85em;}
         .bloque {margin:5px 0;}
         td {font-size:1.5em;}
@@ -15,9 +19,13 @@
         .legal p {font-size:0.6em;}
         h3, #pie, .legal, #cabezera {text-align:center;}
         h3, #cabezera, td {font-family:kiro, Verdana, Geneva, sans-serif;}
-        h3 {font-size:1.25em;}
+        h3 {font-size:1.15em;}
         .numerocheck {font-size:0.9em;}
     </style>
+    <t>
+        .titulo {font-size:0.93em;}
+        .titulo2 {font-size:1.93em;}
+    </t>
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
         <t t-foreach='o.partner_id' t-as='partner'>
@@ -25,47 +33,111 @@
 
             <div class="page">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p class="text-center lead">
-                                <img src='/alda_pms/static/src/img/logo_alda_bn.png' 
-                                style="width:100%; max-heigth:50px"/>
+                    <div class="row cabezera">
+                        <div class="col-md-12 text-center">
+                            <img src='/alda_pms/static/src/img/logo_alda_bn.png' 
+                            style="width:100%; max-heigth:50px; margin:0 0 1em 0;"/>
+                            <p style="font-size:1.16em;">PARTE DE ENTRADA DE VIAJEROS</p>
+                            <p class="numerocheck">Nº parte: <span t-field="o.id"/>/<span t-field="o.reservation_id"/></p>
+                            <p><strong>CIF: xxx</strong><br/>
+                            <strong>Nombre del centro</strong><br/>
+                            <strong>direccion, ciudad.'</strong><br/></p>
 
-                                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-                            </p>
+<!--                             <t t-esc="o.company"/><br/>
+
+
+                            <t t-call="alda_pms.parte_viajero_header"/>  -->
+
+                            <p class="titulo">DOCUMENTO DEL VIAJERO</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <table width="100%" border="1" style="border-style: double;">
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    Nº de documento</td>
+                                <td width="100%"  border="1" style="border-style: double;">
+                                    <strong><t t-esc="partner.poldocument"/></strong></td>
+                              </tr>
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    Tipo</td>
+                                <td width="100%" border="1" style="border-style: double;">
+                                    <strong>
+                                        <t t-esc="dict(partner.fields_get(allfields=['documenttype'])['documenttype']['selection'])[partner.documenttype]"/>
+                                    </strong></td>
+                              </tr>
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    Fecha expedición</td>
+                                <td width="100%" border="1" style="border-style: double;">
+                                    <strong><t t-esc="partner.polexpedition"/></strong></td>
+                              </tr>
+                            </table><br/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            Lorem ipsum dolor sit amet
-                        </div>
-                        <div class="col-md-9">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            Lorem ipsum dolor sit amet
-                        </div>
-                        <div class="col-md-9">
-                            <strong>consectetur adipiscing elit</strong>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            Lorem ipsum dolor sit amet
-                        </div>
-                        <div class="col-md-9">
-                            <strong>consectetur adipiscing elit</strong>
+                        <div class="col-md-12 text-center">
+                            <table width="100%" border="1" style="border-style: double;">
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    Nombre</td>
+                                <td width="100%"  border="1" style="border-style: double;">
+                                    <strong><t t-esc="partner.firstname"/></strong></td>
+                              </tr>
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    Apellidos</td>
+                                <td width="100%" border="1" style="border-style: double;">
+                                    <strong><t t-esc="partner.lastname"/></strong></td>
+                              </tr>
+                            </table><br/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            Lorem ipsum dolor sit amet
-                        </div>
-                        <div class="col-md-9">
-                            <strong>consectetur adipiscing elit</strong>
+                        <div class="col-md-12 text-center">
+                            <table width="100%" border="1" style="border-style: double;">
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    Sexo</td>
+                                <td width="100%"  border="1" style="border-style: double;">
+                                    <strong><t t-esc="partner.gender"/></strong></td>
+                              </tr>
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    F. de nacimiento</td>
+                                <td width="100%" border="1" style="border-style: double;">
+                                    <strong><t t-esc="partner.birthdate_date"/></strong></td>
+                              </tr>
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    Procedencia</td>
+                                <td width="100%" border="1" style="border-style: double;">
+                                    <strong><span t-field="partner.code_ine"/></strong></td>
+                              </tr>
+                            </table><br/>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <table width="100%" border="1" style="border-style: double;">
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    Fecha de entrada</td>
+                                <td width="100%"  border="1" style="border-style: double;">
+                                    <strong><span t-field="o.enter_date"/></strong></td>
+                              </tr>
+                              <tr>
+                                <td width="40%" border="1" style="border-style: double;">
+                                    Fecha de salida</td>
+                                <td width="100%" border="1" style="border-style: double;">
+                                    <strong><span t-field="o.exit_date"/></strong></td>
+                              </tr>
+                            </table><br/>
+                        </div>
+                    </div>                    
                     <div class="row">
                         <div class="col-md-12">
                             <p class="text-center lead">
