@@ -17,6 +17,7 @@
                             <field name="permanentstaff" />
                             <field name="eventualstaff" />
                             <field name="police" />
+                            <field name="cardex_warning" />
                         </group>
                     </group>
 

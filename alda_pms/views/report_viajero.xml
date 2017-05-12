@@ -142,7 +142,7 @@
                             <div class="firma" style="width: 85%; border:dotted 1px; height: 80px; margin:0 auto;">
                             </div><br/>
                             <p class="text-center">Firma del viajero</p>
-                            <p class="text-center">'.$avisohorario.'</p>
+                            <p class="text-center" style="font-size:0.65em;"><t t-esc="company.cardex_warning"/></p>
                             <p class="text-center" style="font-size:0.6em;">La recogida y tratamiento se hará de acuerdo con la Ley Orgánica 15/1999, de 13 de dic. de protección de datos de carácter personal y al amparo de lo dispuesto en el art. 12.1 de la Ley Orgánica 1/1992, de 21 de febrero, sobre protección de la seguridad ciudadana.</p>                            
                         </div>
                     </div>
@@ -259,8 +259,8 @@
                             </p><br/>
                             <p class="text-center">
                                 <strong>COPIA PARA EL USUARIO</strong></p>
-                            <p class="text-center">'.$avisohorario.'</p>
-                            <p class="text-center" style="font-size:0.6em;">La recogida y tratamiento se hará de acuerdo con la Ley Orgánica 15/1999, de 13 de dic. de protección de datos de carácter personal y al amparo de lo dispuesto en el art. 12.1 de la Ley Orgánica 1/1992, de 21 de febrero, sobre protección de la seguridad ciudadana.</p>                            
+                            <p class="text-center" style="font-size:0.65em;"><t t-esc="company.cardex_warning"/></p>
+                            <p class="text-center" style="font-size:0.6em;">La recogida y tratamiento se hará de acuerdo con la Ley Orgánica 15/1999, de 13 de dic. de protección de datos de carácter personal y al amparo de lo dispuesto en el art. 12.1 de la Ley Orgánica 1/1992, de 21 de febrero, sobre protección de la seguridad ciudadana.</p>                           
                         </div>
                     </div>
                 </div>
