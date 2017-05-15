@@ -69,8 +69,13 @@
                         <button name="%(launch_checkin_wizard)d" string="Checkin"
                           type="action" context="{'reservation_id': id}" 
                           attrs="{'invisible': [('cardex_pending','=',True)]}" />
-                        <field name='cardex_pending' invisible='True'/>
+                        <field name='cardex_pending' invisible='True'/>			
+			<field name='folio_count' invisible='True'/>	
                     </xpath>
+		    <xpath expr="//button[@name='done']" position="attributes">
+			<attribute name='states'></attribute>
+			<attribute name="attrs">{'invisible':[('folio_count','>',0)]}</attribute>
+		    </xpath>	    
                     <xpath expr="//notebook" position="inside">
                         <page string='Cardex'>
                             <field name='cardex_ids' mode='tree' create= 'False' edit='False' editable='bottom' context="{'reservation_id': active_id}"/>
@@ -78,6 +83,16 @@
                     </xpath>
                 </field>
             </record>
-
+		
+	    <record id="view_hotel_reservation_search" model="ir.ui.view">
+               <field name="name">view_hotel_reservation_search</field>
+               <field name="model">hotel.reservation</field>
+               <field name="inherit_id" ref="hotel_reservation.view_hotel_reservation_search" />
+               <field name="arch" type="xml">
+		    <xpath expr="//field[@name='partner_id']" position="before">
+			 <filter domain="[('state','=','checkin')]" string="Checkin"/>
+		    </xpath>	
+	      </field>
+	    </record>
         </data>
     </openerp>
