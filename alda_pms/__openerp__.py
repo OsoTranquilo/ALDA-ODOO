@@ -49,7 +49,6 @@
         'views/code_ine.xml',
         'views/inherit_hotel_reservation.xml',
         'views/inherit_res_company.xml',
-        #'views/report_company_header.xml',
         'views/report_viajero.xml',        
     'views/inherit_reservation_workflow.xml',
     ],

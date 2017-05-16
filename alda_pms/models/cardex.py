@@ -3,7 +3,6 @@
 from openerp import models, fields, api
 from openerp.exceptions import except_orm, ValidationError
 import datetime
-import base64  
 
 class Cardex(models.Model):
     _name = 'cardex'

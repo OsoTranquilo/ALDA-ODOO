@@ -44,18 +44,6 @@
                 </field>
             </record>
 
-            <record id="download_cardex" model="ir.ui.view">
-                <field name="name">Cardex Download</field>
-                <field name="model">cardex</field>
-                <field name="arch" type="xml"> 
-                    <form> 
-                        <button name="generate_file" type="object" string="Generate file"/>
-                        <field name="txt_filename" invisible="1"/>
-                        <field name="txt_binary" filename="txt_filename" readonly="1"/>
-                    </form>
-                </field>
-            </record>
-
             <record id="view_tree_cardex" model="ir.ui.view">
                 <field name="name">Cardex Tree</field>
                 <field name="model">cardex</field>
