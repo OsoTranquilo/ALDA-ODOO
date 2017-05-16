@@ -42,6 +42,7 @@
         'data/report_viajero_paperformat.xml',
 
         'wizard/checkinwizard.xml',
+        'wizard/policewizard.xml',
 
         'views/cardex.xml',
         'views/cardex_partner.xml',
@@ -49,7 +50,6 @@
         'views/code_ine.xml',
         'views/inherit_hotel_reservation.xml',
         'views/inherit_res_company.xml',
-        #'views/report_company_header.xml',
         'views/report_viajero.xml',
 
         'report/report_parte_viajero.xml',

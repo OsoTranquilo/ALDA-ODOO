@@ -129,6 +129,7 @@ class Wizard(models.TransientModel):
           'enter_date':self.enter_date,
           'exit_date':self.exit_date})
         return
+
         #return {'type': 'launch_checkin_wizard_list','tag': 'reload',}
         #res = { 'type': 'ir.actions.client', 'tag': 'load', 'reservation_id': self.reservation_id }
         #return res

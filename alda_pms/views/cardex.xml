@@ -9,7 +9,12 @@
                 res_model="cardex"
                 view_mode="tree,form"
             /> 
-        <!-- Menu item to open INE Codes list --> 
+            <act_window
+                id="action_cardex_download"
+                name="Action cardex download"
+                res_model="cardex"
+                view_mode="form"
+            />         <!-- Menu item to open INE Codes list --> 
             <menuitem 
                 id="menu_cardex"
                 name="cardex"
@@ -17,6 +22,7 @@
                 sequence="35"
                 action="action_cardex"
             />
+
             <record id="view_form_cardes" model="ir.ui.view">
                 <field name="name">Cardex Form</field>
                 <field name="model">cardex</field>
@@ -37,6 +43,19 @@
                     </form>
                 </field>
             </record>
+
+            <record id="download_cardex" model="ir.ui.view">
+                <field name="name">Cardex Download</field>
+                <field name="model">cardex</field>
+                <field name="arch" type="xml"> 
+                    <form> 
+                        <button name="generate_file" type="object" string="Generate file"/>
+                        <field name="txt_filename" invisible="1"/>
+                        <field name="txt_binary" filename="txt_filename" readonly="1"/>
+                    </form>
+                </field>
+            </record>
+
             <record id="view_tree_cardex" model="ir.ui.view">
                 <field name="name">Cardex Tree</field>
                 <field name="model">cardex</field>
@@ -49,6 +68,7 @@
                         <button type="action" class="oe_stat_button" id="cardex_smart_button_2" icon="fa-file-pdf-o" name="%(action_report_viajero)d" context="{'partner_id': partner_id,'enter_date': enter_date,'exit_date': exit_date,'reserva_id': reservation_id, 'hidden_cardex': True, 'edit_cardex': True }"/>
                         <button type="action" class="oe_stat_button" id="cardex_smart_button" icon="fa-bed" name="%(launch_checkin_wizard_add)d" context="{'partner_id': partner_id,'enter_date': enter_date,'exit_date': exit_date,'reserva_id': reservation_id, 'hidden_cardex': True, 'edit_cardex': True }"/>
                     </tree>
+                              
                 </field>
             </record>
         </data>

@@ -3,6 +3,7 @@
 from openerp import models, fields, api
 from openerp.exceptions import except_orm, ValidationError
 import datetime
+import base64  
 
 class Cardex(models.Model):
     _name = 'cardex'
@@ -42,13 +43,10 @@ class Cardex(models.Model):
         if self.exit_date <= self.enter_date:
             date_1 = datetime.datetime.strptime(self.enter_date, "%Y-%m-%d")
             date_2 = date_1 + datetime.timedelta(days=1)
-            #self.exit_date = date_1 + datetime.timedelta(days=1)
             self.update({'exit_date':date_2,})
             raise ValidationError('Departure date, is prior to arrival. Check it now. %s' %(date_2))
-
 
     partner_id = fields.Many2one('res.partner', default=default_partner_id)
     reservation_id = fields.Many2one('hotel.reservation', default=default_reservation_id, readonly=True)
     enter_date = fields.Date( default=default_enter_date, required=True)
     exit_date = fields.Date( default=default_exit_date, required=True)
-
