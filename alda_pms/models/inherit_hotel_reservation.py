@@ -36,3 +36,4 @@ class Inherit_hotel_reservation(models.Model):
 	folio = super(Inherit_hotel_reservation, self)._create_folio()
 	reservations_confirm.write({'state': 'confirm'})
 	reservations_checkin.write({'state': 'checkin'})
+

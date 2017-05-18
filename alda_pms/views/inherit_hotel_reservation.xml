@@ -38,7 +38,7 @@
                           <button type="action" class="oe_stat_button" 
                             id="cardex_smart_button" 
                             icon="fa-user-plus" 
-                            name="%(launch_checkin_wizard_add)d"
+                            name="%(launch_checkin_wizard)d"
                             attrs="{'invisible': [('cardex_pending_num','&lt;=',0)]}"
                             context="{'reservation_id': id, 'hidden_cardex': True}">
                           <div>
@@ -62,13 +62,17 @@
                     </xpath>
 
                     <xpath expr="//button[@name='done']" position="after">
-                        <button name="%(launch_checkin_wizard)d" string="Checkin"
+                        <button name="%(launch_checkin_wizard_add)d" string="Checkin"
                           type="action" context="{'reservation_id': id}" 
                           class="oe_highlight"
-                          attrs="{'invisible': [('cardex_pending','=',False)]}" />
-                        <button name="%(launch_checkin_wizard)d" string="Checkin"
+                           attrs="{'invisible': ['|',('cardex_count','&gt;',0),('state','not in',['confirm'])]}"/>
+                        <button name="%(launch_checkin_wizard_add)d" string="Checkin"
                           type="action" context="{'reservation_id': id}" 
-                          attrs="{'invisible': [('cardex_pending','=',True)]}" />
+                           attrs="{'invisible': ['|',('state','=','confirm'),('cardex_pending_num','&lt;=',0)]}"/>
+			<button name="action_reservation_checkout" string="Checkout"
+                          type="object" context="{'reservation_id': id}" 
+			  class="oe_highlight"
+                          attrs="{'invisible': [('state','!=','checkin')]}"/>
                         <field name='cardex_pending' invisible='True'/>			
 			<field name='folio_count' invisible='True'/>	
                     </xpath>
