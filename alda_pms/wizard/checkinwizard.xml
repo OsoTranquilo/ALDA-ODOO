@@ -25,21 +25,21 @@
                             <field name="lastname_cardex" colspan="2"/>
                         </group>
                         <group col="4">
-                            <field name="poldocument_cardex" colspan="2"/>
+                            <field name="poldocument_cardex" colspan="2" required="True"/>
                             <newline/>
-                            <field name="documenttype_cardex" colspan="2"/>
-                            <field name="polexpedition_cardex" colspan="2"/>
+                            <field name="documenttype_cardex" colspan="2" required="True"/>
+                            <field name="polexpedition_cardex" colspan="2" required="True"/>
                         </group>
                         <group col="4">
-                            <field name="gender_cardex" colspan="2"/>
-                            <field name="birthdate_date_cardex" colspan="2"/>
+                            <field name="gender_cardex" colspan="2" required="True"/>
+                            <field name="birthdate_date_cardex" colspan="2" required="True"/>
                         </group>
                         <group col="4">
                             <field name="email_cardex" colspan="2"/>
                             <field name="mobile_cardex" colspan="2"/>
                         </group>
                         <group>
-                            <field name="code_ine_cardex" placeholder="Code in INE" options="{'no_create': True,'no_open': True}" colspan="2"/>
+                            <field name="code_ine_cardex" placeholder="Code in INE" options="{'no_create': True,'no_open': True}" colspan="2" required="True"/>
                             <newline/>
                             <field name="category_id_cardex" widget="many2many_tags" placeholder="Tags..." colspan="2"/>
                         </group>

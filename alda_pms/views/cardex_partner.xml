@@ -18,9 +18,9 @@
                 <field name="id_numbers"  placeholder="Identification..." context="{'form_view_ref':'odoo_pms_checkin.inherit_action_partner_id_numbers_form'}"/> -->
                 <div colspan="2">
                     <label for="documenttype" string="Document"/>
-                    <field name="documenttype" placeholder="Select one..."/>                
-                    <field name="poldocument" placeholder="Document number"/>               
-                    <field name="polexpedition" placeholder="Document expedition date"/>
+                    <field name="documenttype" placeholder="Select one..." required="True"/>                
+                    <field name="poldocument" placeholder="Document number" required="True"/>               
+                    <field name="polexpedition" placeholder="Document expedition date" required="True"/>
                 </div>
                 <div colspan="2">
                     <label for="street" string="Address"/>
@@ -37,9 +37,9 @@
                     <label for="email" string="E-Mail"/>
                     <field name="email" widget="email"  placeholder="Ej.: name@domain.com" style="width: 25%%"/>
                     <label for="birthdate_date" string="Birth date"/>
-                    <field name="birthdate_date" style="width: 25%%"/>
+                    <field name="birthdate_date" style="width: 25%%" required="True"/>
                     <label for="gender" string="Gender"/>
-                    <field name="gender" style="width: 25%%"/>
+                    <field name="gender" style="width: 25%%" required="True"/>
     <!--             <field name="contact_address"/>
                 <field name="display_name"/> -->
                 </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div colspan="2">
                     <label for="code_ine" string="INE Code"/>
-                    <field name="code_ine" placeholder="Code in INE" options="{'no_create': True,'no_open': True}"/>
+                    <field name="code_ine" placeholder="Code in INE" options="{'no_create': True,'no_open': True}" required="True"/>
                 </div>
                 <div colspan="2">
                     <label for="category_id" string="Tags"/>

@@ -51,8 +51,8 @@ class ResPartner(models.Model):
     # @api.constrains('x')
     # Pendiente
 
-    poldocument = fields.Char('Document number', required=True)
-    polexpedition = fields.Date('Document expedition date', required=True)
+    poldocument = fields.Char('Document number')
+    polexpedition = fields.Date('Document expedition date')
     documenttype = fields.Selection([
         ('D', 'DNI'),
         ('P', 'Pasaporte'),
@@ -61,12 +61,9 @@ class ResPartner(models.Model):
         ('N', 'Permiso Residencia Español'),
         ('X', 'Permiso Residencia Europeo')],
         help='blabla',
-        required=True,
         string='Document type')
-    birthdate_date = fields.Date("Birthdate", required=True)
+    birthdate_date = fields.Date("Birthdate")
     gender = fields.Selection([('male', 'Male'),
-                               ('female', 'Female')],
-                                required=True)
+                               ('female', 'Female')])
     code_ine = fields.Many2one('code_ine',
-            help='Country or province of origin. Used for INE statistics.',
-            required=True)
+            help='Country or province of origin. Used for INE statistics.')
