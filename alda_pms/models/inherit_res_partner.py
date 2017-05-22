@@ -19,8 +19,10 @@ class ResPartner(models.Model):
 
 
     # Validation for expedicion anterior al nacimiento
-    # @api.constrains('x')
-    # Pendiente
+    @api.constrains('polexpedition')
+    def validation_expedition_under_birth(self):
+        if self.birthdate_date > self.polexpedition:
+            raise models.ValidationError('Date of document shipment, prior to birth date')
 
     # Validation for Tipo de documento no valido para Extranjero
     # @api.constrains('x')
