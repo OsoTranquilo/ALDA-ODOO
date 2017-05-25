@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*- 
 from openerp import models, fields, api
-
+import logging
+_logger=logging.getLogger(__name__)
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -33,11 +34,42 @@ class ResPartner(models.Model):
     # @api.constrains('x')
     # Pendiente
 
+    # Validation for DNI/Permiso conducir erroneo
+    @api.constrains('documenttype')
+    def validation_poldocument_type(self):
+        _logger.info('---TTTTTTTTTTTTTT----')
+        _logger.info(self.documenttype)
+        if self.documenttype in ['D','C','I']:
+            _logger.info(self.poldocument)
 
     # Validation for DNI/Permiso conducir erroneo
-    # @api.constrains('x')
-    # Pendiente
-
+    @api.constrains('poldocument')
+    def validation_poldocument_dni(self):
+        _logger.info('----------')
+        _logger.info(self.documenttype)
+        if self.documenttype in ['D','C','I']:
+            validcaracter = "TRWAGMYFPDXBNJZSQVHLCKE"
+            dig_ext = "XYZ"
+            reemp_dig_ext = {'X':'0', 'Y':'1', 'Z':'2'}
+            numeros = "1234567890"
+            dni = self.poldocument.upper()
+            _logger.info(dni)
+            if len(dni) == 9:
+                dig_control = dni[8]
+                dni = dni[:8]
+                _logger.info('Control es')
+                _logger.info(dig_control)
+                if dni[0] in dig_ext:
+                    _logger.info('extranjero empieza por XYZ')
+                    dni = dni.replace(dni[0], reemp_dig_ext[dni[0]])
+                    _logger.info(dni)
+                if (len(dni) == len([n for n in dni if n in numeros])) and (validcaracter[int(dni)%23] == dig_control):
+                    _logger.info('Esta O.K.')
+                else:
+                    raise models.ValidationError('DNI/NIE erroneo reviselo')
+            else:
+                raise models.ValidationError('DNI/NIE longitud erronea formato correcto: (12345678A o X1234567A)')
+        _logger.info('----------')
 
     # Validation for Fecha anterior a 1900
     # @api.constrains('x')
@@ -52,9 +84,6 @@ class ResPartner(models.Model):
     # Validation for unicos caracteres permitos numeros y letras
     # @api.constrains('x')
     # Pendiente
-
-    poldocument = fields.Char('Document number')
-    polexpedition = fields.Date('Document expedition date')
     documenttype = fields.Selection([
         ('D', 'DNI'),
         ('P', 'Pasaporte'),
@@ -64,6 +93,8 @@ class ResPartner(models.Model):
         ('X', 'Permiso Residencia Europeo')],
         help='blabla',
         string='Document type')
+    poldocument = fields.Char('Document number')
+    polexpedition = fields.Date('Document expedition date')
     birthdate_date = fields.Date("Birthdate")
     gender = fields.Selection([('male', 'Male'),
                                ('female', 'Female')])

@@ -74,9 +74,7 @@ class Wizard(models.TransientModel):
     reservation_id = fields.Many2one('hotel.reservation', default=default_reservation_id, readonly=True)
     enter_date = fields.Date( default=default_enter_date, required=True)
     exit_date = fields.Date( default=default_exit_date, required=True)
-    
-    poldocument_cardex = fields.Char('Doc. number', required=True, related='partner_id.poldocument')
-    polexpedition_cardex = fields.Date('Expedition date', required=True, related='partner_id.polexpedition')
+
     documenttype_cardex = fields.Selection([
         ('D', 'DNI'),
         ('P', 'Pasaporte'),
@@ -87,7 +85,9 @@ class Wizard(models.TransientModel):
         help='blabla',
         required=True,
         string='Doc. type',
-        related='partner_id.documenttype')
+        related='partner_id.documenttype')    
+    poldocument_cardex = fields.Char('Doc. number', required=True, related='partner_id.poldocument')
+    polexpedition_cardex = fields.Date('Expedition date', required=True, related='partner_id.polexpedition')
     birthdate_date_cardex = fields.Date("Birthdate", required=True, related='partner_id.birthdate_date')
     gender_cardex = fields.Selection([('male', 'Male'),
                                ('female', 'Female')],
@@ -135,4 +135,4 @@ class Wizard(models.TransientModel):
 
         #return {'type': 'launch_checkin_wizard_list','tag': 'reload',}
         #res = { 'type': 'ir.actions.client', 'tag': 'load', 'reservation_id': self.reservation_id }
-        #return res
+        #return res      

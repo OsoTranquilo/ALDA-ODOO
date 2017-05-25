@@ -19,7 +19,7 @@
                 <div colspan="2">
                     <label for="documenttype" string="Document"/>
                     <field name="documenttype" placeholder="Select one..." required="True"/>                
-                    <field name="poldocument" placeholder="Document number" required="True"/>               
+                    <field name="poldocument" placeholder="Document number (DNI: 123456789A)" required="True"/>               
                     <field name="polexpedition" placeholder="Document expedition date" required="True"/>
                 </div>
                 <div colspan="2">
