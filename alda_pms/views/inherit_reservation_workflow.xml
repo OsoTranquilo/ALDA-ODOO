@@ -5,7 +5,7 @@
             <field name="wkf_id" ref="hotel_reservation.wkf_reservation"/>
             <field name="name">checkin</field>
             <field name="kind">function</field>
-            <field name="action">action_reservation_chekin()</field>
+            <field name="action">action_reservation_checkin()</field>
         </record>
 	<record model="workflow.transition" id="hotel_reservation.t2">
 			<field name="act_from" ref="act_checkin" />

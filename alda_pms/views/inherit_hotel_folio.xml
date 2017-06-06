@@ -1,17 +1,18 @@
-<?xml version="1.0"?> 
-    <openerp>      
-        <data> 
+<?xml version="1.0"?>
+    <openerp>
+        <data>
+
             <record id="hotel_checkin_form" model="ir.ui.view">
             <field name="name">hotel_checkin_form</field>
             <field name="model">hotel.reservation</field>
             <field name="view_type">form</field>
             <field name="priority">50</field>
-                        <field name="arch" type="xml">
-                            <form string="Checkin" >
-                                <field name='reservation_no'/>
-                                <field name='cardex_ids' context="{'reservation_id': active_id}"/>
-                            </form>
-                        </field>
+                    <field name="arch" type="xml">
+                        <form string="Checkin" >
+                            <field name='reservation_no'/>
+                            <field name='cardex_ids' context="{'reservation_id': active_id}"/>
+                        </form>
+                    </field>
             </record>
 
             <record id="action_hotel_checkin" model="ir.actions.act_window">
@@ -21,13 +22,13 @@
                 <field name="view_mode">form</field>
                 <field name="context">{'res_id': active_id}</field>
                 <field name="view_id" ref="hotel_checkin_form"/>
-            </record> 
+            </record>
 
             <record id="cardex_view_hotel_reservation_form" model="ir.ui.view">
                <field name="name">cardex.view_hotel_reservation_form</field>
                <field name="model">hotel.reservation</field>
                <field eval="False" name="view_checkin_2"/>
-               <field name="inherit_id" ref="hotel_reservation.view_hotel_reservation_form" />
+               <field name="inherit_id" ref="hotel.view_hotel_reservation_form" />
                 <field name="arch" type="xml">
                     <xpath expr="//h1" position="replace">
                       <group>
@@ -35,25 +36,25 @@
                           <field name="reservation_no" class="oe_inline"/>
                         </h1>
                         <group>
-                          <button type="action" class="oe_stat_button" 
-                            id="cardex_smart_button" 
-                            icon="fa-user-plus" 
+                          <button type="action" class="oe_stat_button"
+                            id="cardex_smart_button"
+                            icon="fa-user-plus"
                             name="%(launch_checkin_wizard)d"
                             attrs="{'invisible': [('cardex_pending_num','&lt;=',0)]}"
                             context="{'reservation_id': id, 'hidden_cardex': True}">
                           <div>
-                            <field name="cardex_pending_num" 
+                            <field name="cardex_pending_num"
                               string="Pending" widget="statinfo"/>
                           </div>
                           </button>
-                          <button type="action" class="oe_stat_button" 
-                            id="cardex_smart_button" 
-                            icon="fa-bed" 
+                          <button type="action" class="oe_stat_button"
+                            id="cardex_smart_button"
+                            icon="fa-bed"
                             name="%(launch_checkin_wizard_list)d"
                             attrs="{'invisible': [('cardex_count','&lt;=',0)]}"
                             context="{'reservation_id': id, 'hidden_cardex': False}">
                           <div>
-                            <field name="cardex_count" 
+                            <field name="cardex_count"
                               string="Checks" widget="statinfo"/>
                           </div>
                           </button>
@@ -61,42 +62,33 @@
                       </group>
                     </xpath>
 
-                    <xpath expr="//button[@name='done']" position="after">
+                    <xpath expr="//button[@name='confirm']" position="after">
                         <button name="%(launch_checkin_wizard_add)d" string="Checkin"
-                          type="action" context="{'reservation_id': id}" 
+                          type="action" context="{'reservation_id': id}"
                           class="oe_highlight"
                            attrs="{'invisible': ['|',('cardex_count','&gt;',0),('state','not in',['confirm'])]}"/>
                         <button name="%(launch_checkin_wizard_add)d" string="Checkin"
-                          type="action" context="{'reservation_id': id}" 
+                          type="action" context="{'reservation_id': id}"
                            attrs="{'invisible': ['|',('state','=','confirm'),('cardex_pending_num','&lt;=',0)]}"/>
-			<button name="action_reservation_checkout" string="Checkout"
-                          type="object" context="{'reservation_id': id}" 
-			  class="oe_highlight"
+                        <button name="action_reservation_checkout" string="Checkout"
+                          type="object" context="{'reservation_id': id}"
+                            class="oe_highlight"
                           attrs="{'invisible': [('state','!=','checkin')]}"/>
-                        <field name='cardex_pending' invisible='True'/>			
-			<field name='folio_count' invisible='True'/>	
+                        <field name='cardex_pending' invisible='True'/>
+
                     </xpath>
-		    <xpath expr="//button[@name='done']" position="attributes">
-			<attribute name='states'></attribute>
-			<attribute name="attrs">{'invisible':[('folio_count','>',0)]}</attribute>
-		    </xpath>	    
-                    <xpath expr="//notebook" position="inside">
-                        <page string='Cardex'>
-                            <field name='cardex_ids' mode='tree' create= 'False' edit='False' editable='bottom' context="{'reservation_id': active_id}"/>
-                        </page> 
+                    <xpath expr="//button[@name='confirm']" position="attributes">
+                        <attribute name='states'></attribute>
+                    </xpath>
+                    <xpath expr="//sheet" position="after">
+                        <notebook>
+                            <page string='Cardex'>
+                                <field name='cardex_ids' mode='tree' create= 'False' edit='False' editable='bottom' context="{'reservation_id': active_id}"/>
+                            </page>
+                        </notebook>
                     </xpath>
                 </field>
             </record>
-		
-	    <record id="view_hotel_reservation_search" model="ir.ui.view">
-               <field name="name">view_hotel_reservation_search</field>
-               <field name="model">hotel.reservation</field>
-               <field name="inherit_id" ref="hotel_reservation.view_hotel_reservation_search" />
-               <field name="arch" type="xml">
-		    <xpath expr="//field[@name='partner_id']" position="before">
-			 <filter domain="[('state','=','checkin')]" string="Checkin"/>
-		    </xpath>	
-	      </field>
-	    </record>
+
         </data>
     </openerp>

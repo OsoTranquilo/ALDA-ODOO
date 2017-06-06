@@ -10,7 +10,7 @@ _logger=logging.getLogger(__name__)
 class Wizard(models.TransientModel):
     _name = 'checkin.wizard'
 
-    def default_enter_date(self):        
+    def default_enter_date(self):
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.checkin
@@ -18,7 +18,7 @@ class Wizard(models.TransientModel):
             return self.env.context['enter_date']
         return False
 
-    def default_exit_date(self):        
+    def default_exit_date(self):
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.checkout
@@ -26,7 +26,7 @@ class Wizard(models.TransientModel):
             return self.env.context['exit_date']
         return False
 
-    def default_reservation_id(self):        
+    def default_reservation_id(self):
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation
@@ -34,7 +34,7 @@ class Wizard(models.TransientModel):
             return self.env.context['reserva_id']
         return False
 
-    def default_partner_id(self):        
+    def default_partner_id(self):
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.partner_id
@@ -42,17 +42,17 @@ class Wizard(models.TransientModel):
             return self.env.context['partner_id']
         return False
 
-    def default_cardex_ids(self):       
+    def default_cardex_ids(self):
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.cardex_ids
 
-    def default_count_cardex(self):       
+    def default_count_cardex(self):
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.cardex_count
 
-    def default_pending_cardex(self):       
+    def default_pending_cardex(self):
         if 'reservation_id' in self.env.context:
             reservation = self.env['hotel.reservation'].search([('id','=',self.env.context['reservation_id'])])
             return reservation.adults + reservation.children - reservation.cardex_count
@@ -85,7 +85,7 @@ class Wizard(models.TransientModel):
         help='blabla',
         required=True,
         string='Doc. type',
-        related='partner_id.documenttype')    
+        related='partner_id.documenttype')
     poldocument_cardex = fields.Char('Doc. number', required=True, related='partner_id.poldocument')
     polexpedition_cardex = fields.Date('Expedition date', required=True, related='partner_id.polexpedition')
     birthdate_date_cardex = fields.Date("Birthdate", required=True, related='partner_id.birthdate_date')
@@ -110,29 +110,23 @@ class Wizard(models.TransientModel):
     # or you can use @api.model for processing only one object
     @api.multi
     def action_save_check(self):
-	for r in self:
-		cardex_val={#'reservation_id':self.reservation_id,
-		  'partner_id':r.partner_id.id,
-		  'enter_date':r.enter_date,
-		  'exit_date':r.exit_date}
-		record_id = r.env[r._context.get('active_model')].browse(r._context.get('active_id'))
-		record_id.write({'cardex_ids':[(0,False,cardex_val)]})
-		if r.reservation_id.cardex_count > 0:     
-			r.reservation_id.state = 'checkin'
+        for r in self:
+            cardex_val={'reservation_id':r.reservation_id,
+              'partner_id':r.partner_id.id,
+              'ent  er_date':r.enter_date,
+              'exit_date':r.exit_date}
+            record_id = r.env[r._context.get('active_model')].browse(r._context.get('active_id'))
+            record_id.write({'cardex_ids':[(0,False,cardex_val)]})
+        if r.reservation_id.cardex_count > 0:
+            r.reservation_id.state = 'checkin'
         return True
 
     @api.multi
     def action_update_check(self):
 
-        record_id = self.env[self._context.get('active_model')].browse(self._context.get('active_id'))
-        #_logger.info(record_id)
-        #_logger.info(cardex_val)
-        record_id.write({#'reservation_id':self.reservation_id,
+        record_id = self.env['hotel.reservation'].browse(self.reservation_id)
+        record_id.write({
           'partner_id':self.partner_id.id,
           'enter_date':self.enter_date,
           'exit_date':self.exit_date})
         return
-
-        #return {'type': 'launch_checkin_wizard_list','tag': 'reload',}
-        #res = { 'type': 'ir.actions.client', 'tag': 'load', 'reservation_id': self.reservation_id }
-        #return res      

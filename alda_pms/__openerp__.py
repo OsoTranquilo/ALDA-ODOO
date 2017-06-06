@@ -31,12 +31,12 @@
     'description': "",
     'depends': [
         'stock',
-        'hotel_reservation',
+    	'hotel',
         'partner_contact_gender',
         'partner_contact_birthdate',
         'partner_firstname',
     ],
-    'data': [
+   'data': [
         'data/code_ine.csv',
         'data/category.csv',
 	'data/report_viajero_paperformat.xml',  
@@ -48,7 +48,7 @@
         'views/cardex_partner.xml',
         'views/category.xml',
         'views/code_ine.xml',
-        'views/inherit_hotel_reservation.xml',
+        'views/inherit_hotel_folio.xml',
         'views/inherit_res_company.xml',
         'views/report_viajero.xml',        
     ],
