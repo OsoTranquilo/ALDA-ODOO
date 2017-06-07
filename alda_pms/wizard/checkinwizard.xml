@@ -10,7 +10,7 @@
                     <sheet>
                         <group col="4">
                         <label for="reservation_id" string="Resevation"/>
-                        <h1><field name="reservation_id"/></h1>
+                        <h1><field name="reservation_id" readonly="1"/></h1>
                         </group>
                             <field name="cardex_ids" readonly="1" invisible="context.get('hidden_cardex',True)" />
                         <group col="4">
@@ -76,7 +76,7 @@
                     <sheet>
                         <group col="4">
                         <label for="reservation_id" string="Resevation"/>
-                        <h1><field name="reservation_id"  readonly="1"/></h1>
+                        <field name="reservation_id" nolabel="1" domain="[('folio_id','=',context.get('folio'))]"/>
                         <button type="action" class="oe_stat_button"
                             id="cardex_smart_button"
                             icon="fa-user-plus"
@@ -95,11 +95,13 @@
             </record>
 
 
-            <record id="launch_checkin_wizard_list" model="ir.actions.act_window">
-                <field name="name">List Checks</field>
-                <field name="res_model">checkin.wizard</field>
-                <field name="view_id" ref="checkin_wizard_form_view"/>
-            </record>
+            <act_window id="launch_checkin_wizard_list"
+                        name="List Checks"
+                        res_model="checkin.wizard"
+                        view_mode="form"
+                        view_id="checkin_wizard_form_view"
+                        target="inline"
+                        key2="client_action_multi"/>
 
             <act_window id="launch_checkin_wizard"
                         name="List Checkin"

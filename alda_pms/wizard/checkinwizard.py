@@ -71,7 +71,7 @@ class Wizard(models.TransientModel):
     count_cardex = fields.Integer('Cardex counter', default=default_count_cardex)
     pending_cardex = fields.Integer('Cardex pending', default=default_pending_cardex)
     partner_id = fields.Many2one('res.partner', default=default_partner_id)
-    reservation_id = fields.Many2one('hotel.reservation', default=default_reservation_id, readonly=True)
+    reservation_id = fields.Many2one('hotel.reservation', default=default_reservation_id)
     enter_date = fields.Date( default=default_enter_date, required=True)
     exit_date = fields.Date( default=default_exit_date, required=True)
 
@@ -111,14 +111,14 @@ class Wizard(models.TransientModel):
     @api.multi
     def action_save_check(self):
         for r in self:
-            cardex_val={'reservation_id':r.reservation_id,
+            cardex_val={
               'partner_id':r.partner_id.id,
               'ent  er_date':r.enter_date,
               'exit_date':r.exit_date}
             record_id = r.env[r._context.get('active_model')].browse(r._context.get('active_id'))
             record_id.write({'cardex_ids':[(0,False,cardex_val)]})
         if r.reservation_id.cardex_count > 0:
-            r.reservation_id.state = 'checkin'
+            r.reservation_id.state = 'booking'
         return True
 
     @api.multi
